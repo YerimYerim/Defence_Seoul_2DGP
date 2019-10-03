@@ -1,13 +1,18 @@
 from pico2d import *
+BackWIDTH = 961
+BackHIEGHT = 567
+tower_IMG_SIZE = 140
 
-open_canvas()
-BackGround: Image = load_image('resource.png')
+open_canvas(BackWIDTH, BackHIEGHT)
 
+BackGround = None
+running = True
 def handle_events():
     global running
     global dir
     events = get_events()
     for event in events:
+
         if event.type == SDL_QUIT:
             running = False
         elif event.type == SDL_KEYDOWN:
@@ -28,12 +33,12 @@ def handle_events():
 while running:
     clear_canvas()
 
-    BackGround.clip_draw(100, 100 * 1, 100, 100, 100, 90)
+    if BackGround is None:
+        BackGround = load_image('resources.png')
+    BackGround.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2 , BackHIEGHT/2 )
+
     update_canvas()
     handle_events()
-    frame = (frame + 1) % 8
-
-#  delay(0.05)
 
 close_canvas()
 
