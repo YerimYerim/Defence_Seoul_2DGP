@@ -4,7 +4,7 @@ IMG_WIDTH = 1648
 BackWIDTH = 961
 BackHIEGHT = 567
 tower_IMG_SIZE = 140
-Boat_IMG_SIZE = 135
+Boat_IMG_SIZE = 50
 Tile_SIZE = 57
 x = 0
 y = 0
@@ -35,14 +35,35 @@ class Boat:
     R.top = 8 * Tile_SIZE
     move_times = 0
     HP_font = None
-    white_color = [255, 255, 255]
+    white_color = [0, 0, 0]
+    Img = None
+    Boat_frame = 0
+    frame_dir = 'R'
 
     def draw(self):
         s = str(self.hp)
-        self.HP_font = load_font('font\\SeoulNamsanB.ttf', 20)
-        BackGround.clip_draw(32, 6, Boat_IMG_SIZE, Boat_IMG_SIZE,
-                             (self.R.left+self.R.right) / 2, (self.R.top + self.R.bot) / 2, Tile_SIZE, Tile_SIZE)
-        self.HP_font.draw((self.R.left + self.R.right) /2 - 10, (self.R.top + self.R.bot) / 2, s, self.white_color)
+
+        if self.Boat_frame >= 7:
+            self.frame_dir = 'L'
+
+        if self.Boat_frame <= 0:
+            self.frame_dir = 'R'
+
+        if self.frame_dir == 'L':
+            self.Boat_frame -= 1
+
+        if self.frame_dir == 'R':
+            self.Boat_frame += 2
+
+        self.Img = load_image('boat.png')
+        self.HP_font = load_font('font\\SeoulNamsanB.ttf', 15)
+        self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE+5, Boat_IMG_SIZE,
+                        (self.R.left+self.R.right) / 2, (self.R.top + self.R.bot) / 2, Tile_SIZE - 10, Tile_SIZE - 10)
+        self.HP_font.draw((self.R.left + self.R.right) /2 + self.Boat_frame / 5  - 2 , (self.R.top + self.R.bot) / 2 + 5, s, self.white_color)
+        print(self.Boat_frame)
+        print(self.frame_dir)
+
+
 
 
     def go_right(self):
@@ -128,9 +149,10 @@ class Boat:
 open_canvas(BackWIDTH, BackHIEGHT)
 
 BackGround = None
+Wave = None
 running = True
 boat = Boat()
-
+boat.Img = load_image('boat.png')
 
 
 def handle_events():
@@ -155,18 +177,22 @@ def handle_events():
                 dir += 1
     pass
 
-BackGround = load_image('resources.png')
+BackGround = load_image('resource.png')
+Wave = load_image('wave_background.jpg')
 B = Boat()
-
+wave_x = 0
 
 while running:
     clear_canvas()
+
+    Wave.clip_draw(-x, 0, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
     BackGround.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
     B.move()
     B.draw()
     update_canvas()
     handle_events()
-    delay(0.01)
+    x+= 1
+    delay(0.05)
 
 close_canvas()
 
