@@ -10,8 +10,9 @@ y = 0
 
 
 class RECT:
-    left = 0
-    bot = 0
-    right = 0
-    top = 0
+   def __init__(self):
+        left = 0
+        bot = 0
+        right = 0
+        top = 0
 
