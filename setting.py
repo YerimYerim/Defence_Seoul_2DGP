@@ -16,7 +16,7 @@ class RECT:
         self.right = 0
         self.top = 0
 
-    def set(self , left, bot, right, top):
+    def set(self, left, bot, right, top):
         self.left = left
         self.right = right
         self.bot = bot

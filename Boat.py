@@ -1,5 +1,3 @@
-from pico2d import *
-from setting import *
 
 class Boat:
     def __init__(self):
@@ -46,7 +44,7 @@ class Boat:
         self.R.top -= self.speed
         self.R.bot -= self.speed
 
-    def move(self):
+    def do(self):
         if self.move_times < Tile_SIZE * 2 - 2:
             self.go_right()
             self.move_times += self.speed
