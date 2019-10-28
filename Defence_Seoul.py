@@ -1,7 +1,7 @@
 from pico2d import *
 from Boat import *
 from setting import *
-
+from Tower import *
 
 open_canvas(BackWIDTH, BackHIEGHT)
 
@@ -12,7 +12,7 @@ boat.Img = load_image('Spritesheet\\boat.png')
 BackGround = load_image('Spritesheet\\resource.png')
 font = None
 B = Boat()
-
+tower = Tower()
 
 def handle_events():
     global running
@@ -44,6 +44,7 @@ while running:
     BackGround.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
     B.move()
     B.draw()
+    tower.draw()
     update_canvas()
     handle_events()
     x += 1

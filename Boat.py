@@ -2,18 +2,20 @@ from pico2d import *
 from setting import *
 
 class Boat:
-    hp = 10
-    speed = 15.0
-    type = 1    # 일반 1  보스 2
-    R = RECT()
-    R.bot, R.left, R.right,  R.top = 7 * Tile_SIZE, 0, Tile_SIZE, 8 * Tile_SIZE
-    move_times = 0
-    HP_font = None
-    Img = None
-    white_color = [0, 0, 0]
-    Boat_frame = 0
-    frame_dir = 'R'
-
+    def __init__(self):
+        self.hp = 10
+        self.speed = 15.0
+        self.type = 1  # 일반 1  보스 2
+        self.R = RECT()
+        self.R.bot, self.R.left, self.R.right, self.R.top = 7 * Tile_SIZE, 0, Tile_SIZE, 8 * Tile_SIZE
+        self.move_times = 0
+        self.HP_font = None
+        self.Img = None
+        self.white_color = [0, 0, 0]
+        self.Boat_frame = 0
+        self.frame_dir = 'R'
+        self.Img = load_image('Spritesheet\\boat.png')
+        self.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
     def draw(self):
         s = str(self.hp)
         if self.Boat_frame >= 8:
@@ -28,8 +30,6 @@ class Boat:
         elif self.frame_dir == 'R':
             self.Boat_frame += 1
 
-        self.Img = load_image('Spritesheet\\boat.png')
-        self.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
         self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE + 5, Boat_IMG_SIZE,
                         (self.R.left+self.R.right) / 2 + 5, (self.R.top + self.R.bot) / 2 + 15, Tile_SIZE - 10, Tile_SIZE - 10)
         self.HP_font.draw((self.R.left + self.R.right) / 2 + self.Boat_frame / 5 + 3 , (self.R.top + self.R.bot) / 2 + 20, s, self.white_color)

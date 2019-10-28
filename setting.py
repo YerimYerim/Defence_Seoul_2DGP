@@ -10,9 +10,30 @@ y = 0
 
 
 class RECT:
-   def __init__(self):
-        left = 0
-        bot = 0
-        right = 0
-        top = 0
+    def __init__(self):
+        self.left = 0
+        self.bot = 0
+        self.right = 0
+        self.top = 0
+
+    def set(self , left, bot, right, top):
+        self.left = left
+        self.right = right
+        self.bot = bot
+        self.top = top
+
+def InterSectRECT(R1, R2):
+    if R1.left < R2.left < R1.right or R1.left < R2.right < R1.right:
+        if R1.bot < R2.bot < R1.top or R1.top < R2.top < R1.top:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+
+
+
+
 
