@@ -22,12 +22,12 @@ class RECT:
         self.bot = bot
         self.top = top
 
-def InterSectRECT(R1, R2):
-    if R1.left < R2.left < R1.right or R1.left < R2.right < R1.right:
-        if R1.bot < R2.bot < R1.top or R1.top < R2.top < R1.top:
-            return True
-        else:
-            return False
+def InterSectRECT(x, y, R1 ):
+
+    if R1.left <= x <= R1.right and R1.bot >= y >= R1.top:
+        print("충돌쓰")
+        return True
+
     else:
         return False
 

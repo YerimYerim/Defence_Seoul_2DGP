@@ -10,15 +10,15 @@ name = "MainState"
 
 #tower = None
 boat = None
-#map = None
+map = None
 
 def enter():
-    global boat, BackGround, stage
+    global boat, BackGround, stage , map
     print(stage)
     boat = Boat()
     boat.hp = stage * 10
     boat.speed += stage / 5
-#    map = Map()
+    map = Map()
     boat.Img = load_image('Spritesheet\\boat.png')
     BackGround = load_image('Spritesheet\\resource.png')
 
@@ -42,7 +42,8 @@ def handle_events():
         if event.type == SDL_QUIT:
             running = False
         elif event.type == SDL_MOUSEBUTTONDOWN:
-            pass
+            map.select(event.x, event.y)
+       #     print (event.x , event.y)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
             boat.hp -= 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
