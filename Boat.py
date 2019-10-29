@@ -112,3 +112,4 @@ class Boat:
             self.go_right()
 
         self.move_times += self.speed
+
