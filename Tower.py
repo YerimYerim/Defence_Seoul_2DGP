@@ -5,7 +5,7 @@ class Tower:
     def __init__(self):
         self.speed = 15.0
         self.R = RECT()
-        self.R.bot, self.R.left, self.R.right, self.R.top = 0, 0, 100, 100
+        self.R.bot, self.R.left, self.R.right, self.R.top = 0, 0, 100,100
         self.angle = 0
         self.HP_font = None
         self.Img = None

@@ -2,7 +2,7 @@ from pico2d import *
 from Boat import *
 from setting import *
 from Tower import *
-from map import *
+
 open_canvas(BackWIDTH, BackHIEGHT)
 
 BackGround = None
@@ -13,7 +13,6 @@ BackGround = load_image('Spritesheet\\resource.png')
 font = None
 B = Boat()
 tower = Tower()
-map = Map()
 
 def handle_events():
     global running
@@ -35,8 +34,6 @@ def handle_events():
                 dir -= 1
             elif event.key == SDLK_LEFT:
                 dir += 1
-        elif event.type == SDL_MOUSEBUTTONDOWN:
-            pass
     pass
 
 
@@ -45,7 +42,7 @@ def handle_events():
 while running:
     clear_canvas()
     BackGround.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
-    B.do()
+    B.move()
     B.draw()
     tower.draw()
     update_canvas()
