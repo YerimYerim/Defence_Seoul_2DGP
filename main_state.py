@@ -4,7 +4,7 @@ from map import *
 
 BackGround = None
 running = True
-
+speedy = 0.03
 font = None
 name = "MainState"
 
@@ -36,7 +36,7 @@ def resume():
 
 
 def handle_events():
-    global running
+    global running,speedy
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -45,13 +45,17 @@ def handle_events():
             pass
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
             boat.hp -= 1
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
+            boat.state = 1
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
+            speedy  -= 0.002
             pass
 
 
 
 def update():
     boat.update()
-    delay(0.03)
+    delay(speedy)
 
 def draw():
     global BackWIDTH, BackHIEGHT, BackWIDTH, BackHIEGHT

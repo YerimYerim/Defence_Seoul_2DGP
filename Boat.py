@@ -22,7 +22,7 @@ class Boat:
         self.frame_dir = 'R'
         self.Img = load_image('Spritesheet\\boat.png')
         self.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
-        self.state =  0 # 0 - 대기 1 - 시작 2 - dead
+        self.state = 0 # 0 - 대기 1 - 시작 2 - dead
 
     def Is_dead(self):
         if self.move_times >= Tile_SIZE * 27 or self.hp <= 0 :
@@ -138,7 +138,7 @@ class Boat:
 
     def update(self):
         global stage
-        if self.state is 0:
+        if self.state is 1:
             self.do()
         if self.state is 3:
             stage = 0
