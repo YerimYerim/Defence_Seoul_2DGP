@@ -1,21 +1,21 @@
 import game_framework
-import pico2d
 import main_state
 from setting import *
 from pico2d import *
 import Start_stage
-from game_framework import *
 
 name = "Gameover_state"
 Img = None
 
 def enter():
-    global Img
+    global Img, stage
+    stage = 1
     Img = load_image('Spritesheet\\GameOver.png')
 
 def exit():
-    global IMG
-    del IMG
+    global Img , stage
+    stage = 1
+    del Img
 
 def pause():
     pass
@@ -29,21 +29,16 @@ def handle_events():
     global running
     events = get_events()
     for event in events:
-        if event.type == SDL_QUIT:
-            running = False
-        elif event.type == SDLK_ESCAPE:
-            game_framework.pop_state()
+        if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
             game_framework.change_state(Start_stage)
-            pass
-
-
 
 def update():
-    delay(0.07)
+    delay(0.03)
+    pass
 
 def draw():
     clear_canvas()
-    Img.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
-    print("over")
-    delay(5)
+#   self, left, bottom, width, height, x, y, w = None, h = None)
+    main_state.draw()
+    Img.clip_draw(0, 0, 1362, 345, BackWIDTH / 2, BackHIEGHT / 2, BackWIDTH, BackHIEGHT / 2)
     update_canvas()

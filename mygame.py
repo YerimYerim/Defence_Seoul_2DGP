@@ -2,7 +2,7 @@ import game_framework
 import pico2d
 import main_state
 import Start_stage
-import Gameover_state
+import gameover_stage
 from setting import *
 
 pico2d.open_canvas(BackWIDTH, BackHIEGHT)

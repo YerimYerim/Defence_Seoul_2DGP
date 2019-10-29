@@ -3,13 +3,14 @@ import pico2d
 import main_state
 from setting import *
 from pico2d import *
+import gameover_stage
+import NextStage
 from game_framework import *
-import Gameover_state
 
 class Boat:
     def __init__(self):
         self.hp = 10
-        self.speed = 15.0
+        self.speed = 5.0
         self.type = 1  # 일반 1  보스 2
         self.R = RECT()
         self.R.bot, self.R.left, self.R.right, self.R.top = 7 * Tile_SIZE, 0, Tile_SIZE, 8 * Tile_SIZE
@@ -136,10 +137,13 @@ class Boat:
 
 
     def update(self):
-
+        global stage
         if self.state is 0:
             self.do()
-
         if self.state is 3:
-            game_framework.change_state(Gameover_state)
+            stage = 0
+            game_framework.push_state(gameover_stage)
+            print("push")
+        if self.hp <= 0:
+            game_framework.push_state(NextStage)
         pass

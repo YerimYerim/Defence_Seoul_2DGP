@@ -1,38 +1,30 @@
-import random
-import json
-import os
 
-from pico2d import *
-import game_framework
-from pico2d import *
 from Boat import *
-from setting import *
-from Tower import *
 from map import *
+
 BackGround = None
 running = True
 
 font = None
 name = "MainState"
 
-tower = None
+#tower = None
 boat = None
-map = None
-
-
+#map = None
 
 def enter():
-    global tower, boat, map, BackGround
+    global boat, BackGround, stage
+    print(stage)
     boat = Boat()
-    map = Map()
+    boat.hp = stage * 10
+    boat.speed += stage / 5
+#    map = Map()
     boat.Img = load_image('Spritesheet\\boat.png')
     BackGround = load_image('Spritesheet\\resource.png')
 
 def exit():
-    global tower, boat, Map
-    del tower
+    global boat
     del boat
-    del Map
 
 
 def pause():
@@ -51,15 +43,18 @@ def handle_events():
             running = False
         elif event.type == SDL_MOUSEBUTTONDOWN:
             pass
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
+            boat.hp -= 1
+            pass
 
 
 
 def update():
     boat.update()
-    delay(0.07)
+    delay(0.03)
 
 def draw():
-    global  BackWIDTH, BackHIEGHT, BackWIDTH, BackHIEGHT
+    global BackWIDTH, BackHIEGHT, BackWIDTH, BackHIEGHT
     clear_canvas()
     BackGround.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
     boat.draw()

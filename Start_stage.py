@@ -1,9 +1,8 @@
 import game_framework
-import pico2d
 import main_state
 from setting import *
 from pico2d import *
-from game_framework import *
+
 start_Img = None
 name = "Start_state"
 def enter():
