@@ -39,8 +39,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.map">
-    <configuration name="Defence_Seoul" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.mygame">
+    <configuration name="Start_stage" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Defence_Seoul_2DGP" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -52,7 +52,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Defence_Seoul.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Start_stage.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,11 +144,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.map" />
         <item itemvalue="Python.mygame" />
+        <item itemvalue="Python.Start_stage" />
         <item itemvalue="Python.map" />
         <item itemvalue="Python.map" />
-        <item itemvalue="Python.main_state" />
+        <item itemvalue="Python.map" />
       </list>
     </recent_temporary>
   </component>
@@ -184,6 +184,11 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Tower.py</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Start_stage.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

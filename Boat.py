@@ -1,3 +1,10 @@
+import game_framework
+import pico2d
+import main_state
+from setting import *
+from pico2d import *
+from game_framework import *
+import Gameover_state
 
 class Boat:
     def __init__(self):
@@ -14,6 +21,15 @@ class Boat:
         self.frame_dir = 'R'
         self.Img = load_image('Spritesheet\\boat.png')
         self.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
+        self.state =  0 # 0 - 대기 1 - 시작 2 - dead
+
+    def Is_dead(self):
+        if self.move_times >= Tile_SIZE * 27 or self.hp <= 0 :
+            self.state = 3
+            return False
+
+        else:
+            pass
     def draw(self):
         s = str(self.hp)
         if self.Boat_frame >= 8:
@@ -108,6 +124,22 @@ class Boat:
 
         elif self.move_times < Tile_SIZE * 27:
             self.go_right()
+        else:
+            self.Is_dead()
+            print("hi im dead")
 
         self.move_times += self.speed
 
+
+
+
+
+
+    def update(self):
+
+        if self.state is 0:
+            self.do()
+
+        if self.state is 3:
+            game_framework.change_state(Gameover_state)
+        pass

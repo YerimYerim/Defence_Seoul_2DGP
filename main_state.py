@@ -55,7 +55,7 @@ def handle_events():
 
 
 def update():
-    boat.do()
+    boat.update()
     delay(0.07)
 
 def draw():
