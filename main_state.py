@@ -14,6 +14,7 @@ map = None
 
 def enter():
     global boat, BackGround, stage , map
+    stage += stage
     print(stage)
     boat = Boat()
     boat.hp = stage * 10
