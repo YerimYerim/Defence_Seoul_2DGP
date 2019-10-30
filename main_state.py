@@ -47,9 +47,14 @@ def handle_events():
         if event.type == SDL_MOUSEMOTION:
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            for i in range(4):
-                if InterSectRECT(event.x, event.y, SelectRect[i]):
-                    map.tower[map.towerCnt].type = i
+            if map.tower[map.towerCnt].type >= 0:
+                map.tower[map.towerCnt].R = map.select(event.x, event.y)
+                print ("install" , map.towerCnt)
+            else:
+                for i in range(4):
+                    if InterSectRECT(event.x, event.y, SelectRect[i]):
+                        map.tower[map.towerCnt].type = i
+                        print(i)
         #     print (event.x , event.y)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
             boat.hp -= 1
