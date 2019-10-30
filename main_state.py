@@ -11,15 +11,17 @@ name = "MainState"
 #tower = None
 boat = None
 map = None
+tower = None
 
 def enter():
-    global boat, BackGround, stage , map
+    global boat, BackGround, stage , map, tower
     stage += stage
     print(stage)
     boat = Boat()
     boat.hp = stage * 10
     boat.speed += stage / 5
     map = Map()
+    tower = [Tower() for i in range(200)]
     boat.Img = load_image('Spritesheet\\boat.png')
     BackGround = load_image('Spritesheet\\resource.png')
 
@@ -57,6 +59,8 @@ def handle_events():
 
 def update():
     boat.update()
+    for i in range(200):
+        tower[i].update()
     delay(speedy)
 
 def draw():
@@ -64,6 +68,8 @@ def draw():
     clear_canvas()
     BackGround.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
     boat.draw()
+    for i in range(200):
+        tower[i].draw()
 #    map.draw()
     update_canvas()
 

@@ -39,4 +39,5 @@ def draw():
 #   self, left, bottom, width, height, x, y, w = None, h = None)
     main_state.draw()
     Img.clip_draw(0, 0, 1362, 345, BackWIDTH / 2, BackHIEGHT / 2, BackWIDTH, BackHIEGHT / 2)
+
     update_canvas()
