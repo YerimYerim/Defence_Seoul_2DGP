@@ -17,13 +17,12 @@ class Tower:
             print(" 그림 업로드")
 
     def draw(self):
-        self.Img.clip_composite_draw(13, 678  - 140, 142, 142, self.angle, ' ', 500, 100, Tile_SIZE, Tile_SIZE)
-        print("타워그림")
+        self.Img.clip_composite_draw(13, 678 - 140, 142, 142, self.angle, ' ', self.R.left, BackHIEGHT - self.R.bot, Tile_SIZE, Tile_SIZE)
+   #     print("타워그림")
 
-    def istall(self , area):
+    def install(self , area):
         area = RECT()
-        if self.type >= 0:
-            self.R = area
+        self.R = area
         pass
 
     def update(self):

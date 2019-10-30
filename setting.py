@@ -19,7 +19,7 @@ class RECT:
 def InterSectRECT(x, y, R1 ):
 
     if R1.left <= x <= R1.right and R1.bot >= y >= R1.top:
-        print("충돌쓰")
+   #     print("충돌쓰")
         return True
 
     else:
