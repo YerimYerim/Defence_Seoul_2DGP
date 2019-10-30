@@ -10,6 +10,7 @@ class Tower:
         self.R.bot, self.R.left, self.R.right, self.R.top = 0, 0, 100, 100
         self.angle = 0
         self.Boat_frame = 0
+        self.type = -1       # 0- 불 1 - 냉기  2 - 전기 3 - 강등
         if Tower.Img is None:
             Tower.Img = load_image('Spritesheet\\resource.png')
             Tower.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
@@ -18,8 +19,11 @@ class Tower:
     def draw(self):
         self.Img.clip_composite_draw(13, 678  - 140, 142, 142, self.angle, ' ', 500, 100, Tile_SIZE, Tile_SIZE)
         print("타워그림")
-    def istall(self , x, y):
 
+    def istall(self , area):
+        area = RECT()
+        if self.type >= 0:
+            self.R = area
         pass
 
     def update(self):

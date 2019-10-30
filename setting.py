@@ -1,13 +1,7 @@
-IMG_HEIGHT = 701
-IMG_WIDTH = 1648
-BackWIDTH = 961
-BackHIEGHT = 567
-tower_IMG_SIZE = 140
-Boat_IMG_SIZE = 50
-Tile_SIZE = 57
-x = 0
-y = 0
-stage = 1
+
+
+
+
 
 class RECT:
     def __init__(self):
@@ -31,9 +25,20 @@ def InterSectRECT(x, y, R1 ):
     else:
         return False
 
+IMG_HEIGHT = 701
+IMG_WIDTH = 1648
+BackWIDTH = 961
+BackHIEGHT = 567
+tower_IMG_SIZE = 140
+Boat_IMG_SIZE = 50
+Tile_SIZE = 57
+x = 0
+y = 0
+stage = 1
 
-
-
-
+SelectRect = [RECT() for i in range(5)]
+for i in range(4):
+    SelectRect[i].set(Tile_SIZE * i *2, Tile_SIZE * 10, Tile_SIZE * 2 * (i+1), Tile_SIZE * 8)
+    print(i)
 
 

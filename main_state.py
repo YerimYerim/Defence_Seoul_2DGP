@@ -12,6 +12,7 @@ name = "MainState"
 boat = None
 map = None
 
+
 def enter():
     global boat, BackGround, stage , map, tower
     stage += stage
@@ -22,6 +23,7 @@ def enter():
     map = Map()
     boat.Img = load_image('Spritesheet\\boat.png')
     BackGround = load_image('Spritesheet\\resource.png')
+
 
 def exit():
     global boat
@@ -42,11 +44,13 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT:
             running = False
-        elif event.type == SDL_MOUSEMOTION:
+        if event.type == SDL_MOUSEMOTION:
             map.select(event.x, event.y)
-        elif event.type == SDL_MOUSEBUTTONDOWN:
-            map.select(event.x, event.y)
-       #     print (event.x , event.y)
+        if event.type == SDL_MOUSEBUTTONDOWN:
+            for i in range(4):
+                if InterSectRECT(event.x, event.y, SelectRect[i]):
+                    map.tower[map.towerCnt].type = i
+        #     print (event.x , event.y)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
             boat.hp -= 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
@@ -56,10 +60,10 @@ def handle_events():
             pass
 
 
-
 def update():
     boat.update()
     delay(speedy)
+
 
 def draw():
     global BackWIDTH, BackHIEGHT, BackWIDTH, BackHIEGHT
