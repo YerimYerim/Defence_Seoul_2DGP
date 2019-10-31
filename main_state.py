@@ -1,5 +1,5 @@
 
-from Boat import *
+from Boat_class import *
 from map import *
 
 BackGround = None
@@ -63,13 +63,19 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
             boat.state = 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
-            speedy  -= 0.002
+            speedy -= 0.002
             pass
 
 
 def update():
+    global boat, map, BackHIEGHT
     boat.update()
     map.update()
+    for i in range(map.towerCnt-1):
+        if map.tower[i].type > 0 and Crash_Circle_Rect((map.tower[i].R.left+map.tower[i].R.right) / 2,  (map.tower[i].R.bot+map.tower[i].R.top) / 2 , Tile_SIZE * 2, boat.R):
+
+
+            print(  " 원 중심좌표 ", (map.tower[i].R.left+map.tower[i].R.right) / 2 , (map.tower[i].R.bot+map.tower[i].R.top) / 2  , i)
     delay(speedy)
 
 

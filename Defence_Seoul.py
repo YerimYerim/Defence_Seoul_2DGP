@@ -1,5 +1,5 @@
 from pico2d import *
-from Boat import *
+from Boat_class import *
 from setting import *
 from Tower import *
 from map import *
@@ -7,11 +7,11 @@ open_canvas(BackWIDTH, BackHIEGHT)
 
 BackGround = None
 running = True
-boat = Boat()
+boat = Boat_class()
 boat.Img = load_image('Spritesheet\\boat.png')
 BackGround = load_image('Spritesheet\\resource.png')
 font = None
-B = Boat()
+B = Boat_class()
 tower = Tower()
 map = Map()
 

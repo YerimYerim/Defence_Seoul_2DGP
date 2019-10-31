@@ -1,5 +1,4 @@
-
-
+from pico2d import *
 
 
 
@@ -24,6 +23,18 @@ def InterSectRECT(x, y, R1 ):
 
     else:
         return False
+def Crash_Circle_Rect(x, y , r, Rect = RECT()):
+    Rect = RECT()
+    tmpR = RECT()
+    x = int()
+    y = int()
+    r = int()
+    tmpR.left , tmpR.bot , tmpR.right , tmpR.top = Rect.left - r,  BackHIEGHT - Rect.bot + r ,  Rect.right + r , BackHIEGHT -  Rect.top - r
+    if InterSectRECT(x, y, tmpR):
+        return True
+    else:
+        return False
+
 
 IMG_HEIGHT = 701
 IMG_WIDTH = 1648
