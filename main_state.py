@@ -47,16 +47,16 @@ def handle_events():
         if event.type == SDL_QUIT:
             running = False
         if event.type == SDL_MOUSEMOTION:
-            pass
-
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            if map.tower[map.towerCnt].type >= 0 and gold > 0 and map.select(event.x , event.y) is not False:
+            if map.tower[map.towerCnt].type >= 0 and gold > 0 and map.select(event.x , event.y) is not False :
                 map.tower[map.towerCnt].R.set (map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
                 print ("install", map.towerCnt ,"타입 " ,map.tower[map.towerCnt].type , " 땅 " , map.select(event.x, event.y).left)
                 print ("타워 구역", map.tower[map.towerCnt].R.left)
                 map.towerCnt += 1
                 gold -= 1
+            elif map.select(event.x , event.y) is False :
+                map.tower[map.towerCnt].type = -1
             else:
                 for i in range(4):
                     if InterSectRECT(event.x, event.y, SelectRect[i]):
