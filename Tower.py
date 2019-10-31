@@ -21,7 +21,6 @@ class Tower:
 
     def draw(self):
             self.Img.clip_composite_draw( 13 + 16 * self.type + 142 * self.type, IMG_HEIGHT - 144 - 16, 144, 144, self.angle, ' ', self.R.left + Tile_SIZE / 2, BackHIEGHT - self.R.bot + Tile_SIZE / 2, Tile_SIZE, Tile_SIZE)
-
     #     print("타워그림")
 
     def install(self , area):

@@ -68,14 +68,17 @@ def handle_events():
 
 
 def update():
-    global boat, map, BackHIEGHT
+    global boat, map, BackHIEGHT , tmpR
     boat.update()
     map.update()
-    for i in range(map.towerCnt-1):
-        if map.tower[i].type > 0 and Crash_Circle_Rect((map.tower[i].R.left+map.tower[i].R.right) / 2,  (map.tower[i].R.bot+map.tower[i].R.top) / 2 , Tile_SIZE * 2, boat.R):
+    for i in range(map.towerCnt):
+        tmpR = RECT()
+        tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat.R.left - Tile_SIZE* 3 , BackHIEGHT -boat.R.bot + Tile_SIZE*3, boat.R.right + Tile_SIZE*3, BackHIEGHT - boat.R.top - Tile_SIZE*3
+        if  InterSectRECT((map.tower[i].R.left + map.tower[i].R.right) / 2 , (map.tower[i].R.bot + map.tower[i].R.top) / 2 , tmpR):
+            print("crash")
 
+     #       print_fps(0,0)
 
-            print(  " 원 중심좌표 ", (map.tower[i].R.left+map.tower[i].R.right) / 2 , (map.tower[i].R.bot+map.tower[i].R.top) / 2  , i)
     delay(speedy)
 
 

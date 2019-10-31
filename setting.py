@@ -1,7 +1,6 @@
 from pico2d import *
 
-
-
+tmpR = None
 class RECT:
     def __init__(self):
         self.left = 0
@@ -23,14 +22,20 @@ def InterSectRECT(x, y, R1 ):
 
     else:
         return False
-def Crash_Circle_Rect(x, y , r, Rect = RECT()):
-    Rect = RECT()
+def Crash_Circle_Rect(x, y , r, Rect):
+    global tmpR
     tmpR = RECT()
+
     x = int()
     y = int()
     r = int()
-    tmpR.left , tmpR.bot , tmpR.right , tmpR.top = Rect.left - r,  BackHIEGHT - Rect.bot + r ,  Rect.right + r , BackHIEGHT -  Rect.top - r
+
+    tmpR.left, tmpR.bot, tmpR.right, tmpR.top = Rect.left - r, Rect.bot - r,  Rect.right + r, Rect.top + r
+ #   tmpR.set(Rect.left - r, Rect.bot - r ,  Rect.right + r , Rect.top + r)
+    print(tmpR.left, tmpR.right)
     if InterSectRECT(x, y, tmpR):
+        print(Rect.left , Rect.right)
+        print (tmpR.left , tmpR.right)
         return True
     else:
         return False
