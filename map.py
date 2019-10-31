@@ -24,7 +24,8 @@ class Map:
         if BackHIEGHT-self.TileRect.bot >= Tile_SIZE:
             draw_rectangle(self.TileRect.left,  BackHIEGHT- self.TileRect.bot + 2 , self.TileRect.right, BackHIEGHT - self.TileRect.top)
         for i in range(self.towerCnt):
-            self.tower[i].draw()
+            if (self.tower[i].type >=0):
+                self.tower[i].draw()
         pass
     def update(self):
         pass

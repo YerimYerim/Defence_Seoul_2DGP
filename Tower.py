@@ -17,7 +17,7 @@ class Tower:
             print(" 그림 업로드")
 
     def draw(self):
-        self.Img.clip_composite_draw(13, 678 - 140, 142, 142, self.angle, ' ', self.R.left, BackHIEGHT - self.R.bot, Tile_SIZE, Tile_SIZE)
+        self.Img.clip_composite_draw(13, 678 - 140, 142, 142, self.angle, ' ', self.R.left + Tile_SIZE / 2, BackHIEGHT - self.R.bot + Tile_SIZE / 2, Tile_SIZE, Tile_SIZE)
    #     print("타워그림")
 
     def install(self , area):
