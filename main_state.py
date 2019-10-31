@@ -51,7 +51,7 @@ def handle_events():
 
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            if map.tower[map.towerCnt].type >= 0 and gold > 0:
+            if map.tower[map.towerCnt].type >= 0 and gold > 0 and map.select(event.x , event.y) is not False:
                 map.tower[map.towerCnt].R.set (map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
                 print ("install", map.towerCnt ,"타입 " ,map.tower[map.towerCnt].type , " 땅 " , map.select(event.x, event.y).left)
                 print ("타워 구역", map.tower[map.towerCnt].R.left)

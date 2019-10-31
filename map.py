@@ -20,10 +20,10 @@ class Map:
                 self.TileRect.set(self.TileRow[j], self.TileCol[i+1], self.TileRow[j+1], self.TileCol[i])
                 if InterSectRECT(x, y, self.TileRect) is True:
                     for n in range(27):
-                        if (i, j) is No[n]:
+                        print(i, j, No[n][0] , No[n][1])
+                        if i is No[n][0] and j is No[n][1]:
                             return False
-                        else:
-                            print ((i, j) , No[n])
+                            pass
                     return self.TileRect
         pass
 
