@@ -69,6 +69,7 @@ def handle_events():
 
 def update():
     boat.update()
+    map.update()
     delay(speedy)
 
 

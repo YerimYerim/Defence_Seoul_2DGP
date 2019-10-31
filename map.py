@@ -28,4 +28,7 @@ class Map:
                 self.tower[i].draw()
         pass
     def update(self):
+        for i in range(self.towerCnt):
+            if self.tower[i].type >= 0:
+                self.tower[i].update()
         pass
