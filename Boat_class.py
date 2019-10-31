@@ -141,9 +141,8 @@ class Boat:
         if self.state is 1:
             self.do()
         if self.state is 3:
-            stage = 0
+            stage = 1
             game_framework.push_state(gameover_stage)
             print("push")
-        if self.hp <= 0:
-            game_framework.push_state(NextStage)
+
         pass
