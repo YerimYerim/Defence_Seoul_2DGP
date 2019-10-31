@@ -9,14 +9,14 @@ font = None
 name = "MainState"
 damage = 0
 
-
 #tower = None
 boat = None
 map = None
-
+gold = None
 
 def enter():
-    global boat, BackGround, stage, map, tower
+    global boat, BackGround, stage, map, tower, gold
+    gold = 10
     stage = 1
     print(stage)
     boat = Boat()
@@ -41,19 +41,22 @@ def resume():
 
 
 def handle_events():
-    global running,speedy
+    global running,speedy , gold
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             running = False
         if event.type == SDL_MOUSEMOTION:
+            pass
+
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            if map.tower[map.towerCnt].type >= 0:
+            if map.tower[map.towerCnt].type >= 0 and gold > 0:
                 map.tower[map.towerCnt].R.set (map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
                 print ("install", map.towerCnt ,"타입 " ,map.tower[map.towerCnt].type , " 땅 " , map.select(event.x, event.y).left)
                 print ("타워 구역", map.tower[map.towerCnt].R.left)
                 map.towerCnt += 1
+                gold -= 1
             else:
                 for i in range(4):
                     if InterSectRECT(event.x, event.y, SelectRect[i]):
@@ -81,9 +84,7 @@ def update():
             if damage > 1:
                 boat.hp -= 1
                 damage = 0
-
             pass
-
      #       print_fps(0,0)
     if boat.hp <= 0:
         boat.__init__()

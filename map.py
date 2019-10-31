@@ -1,5 +1,7 @@
 
 from Tower import *
+No =  ( ( 2, 0), (2,1) ,(3,1) , (3,2) , (3,3) , (4,3) , (4,4),(5,4),(5,5) , (5,6) , (4,6), (4,7), (3,7) , (3,7) ,
+      (3,8), (3,9), (4,9), (4,10), (4,11), (5,11),(5,12),(5,13),(4,13),(4,14),(3,14),(3,15),(2,15),(2,16))
 
 class Map:
 
@@ -17,6 +19,11 @@ class Map:
             for j in range(18):
                 self.TileRect.set(self.TileRow[j], self.TileCol[i+1], self.TileRow[j+1], self.TileCol[i])
                 if InterSectRECT(x, y, self.TileRect) is True:
+                    for n in range(27):
+                        if (i, j) is No[n]:
+                            return False
+                        else:
+                            print ((i, j) , No[n])
                     return self.TileRect
         pass
 
