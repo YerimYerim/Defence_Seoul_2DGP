@@ -75,8 +75,8 @@ def update():
         tmpR = RECT()
         tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat.R.left - Tile_SIZE* 3 , BackHIEGHT -boat.R.bot + Tile_SIZE*3, boat.R.right + Tile_SIZE*3, BackHIEGHT - boat.R.top - Tile_SIZE*3
         if  InterSectRECT((map.tower[i].R.left + map.tower[i].R.right) / 2 , (map.tower[i].R.bot + map.tower[i].R.top) / 2 , tmpR):
-            print("crash")
-
+            pass
+        
      #       print_fps(0,0)
 
     delay(speedy)
