@@ -49,13 +49,16 @@ def handle_events():
         if event.type == SDL_MOUSEMOTION:
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            if map.tower[map.towerCnt].type >= 0 and gold > 0 and map.select(event.x , event.y) is not False :
+            if (map.tower[map.towerCnt].type >= 0 and gold > 0 and map.select(event.x , event.y) is not False and  Tile_SIZE * 8 > event.y ) :
+                for i in range(map.towerCnt):
+                    print("검사는..하냐")
+                    print( map.tower[i].R.left , map.tower[i].R.bot , map.select(event.x , event.y).left ,map.select(event.x , event.y).bot )
+                    if map.select(event.x , event.y).left is map.tower[i].R.left and map.select(event.x , event.y).bot is map.tower[i].R.bot:
+                        return
                 map.tower[map.towerCnt].R.set (map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
-                print ("install", map.towerCnt ,"타입 " ,map.tower[map.towerCnt].type , " 땅 " , map.select(event.x, event.y).left)
-                print ("타워 구역", map.tower[map.towerCnt].R.left)
                 map.towerCnt += 1
                 gold -= 1
-            elif map.select(event.x , event.y) is False :
+            elif map.select(event.x, event.y) is False :
                 map.tower[map.towerCnt].type = -1
             else:
                 for i in range(4):
@@ -70,6 +73,14 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
             speedy -= 0.002
             pass
+        elif (event.type, event.key) == (SDL_KEYDOWN , SDLK_q):
+            map.tower[map.towerCnt].type  = 0
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_w):
+            map.tower[map.towerCnt].type = 1
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
+            map.tower[map.towerCnt].type = 2
+        elif (event.type, event.key) == (SDL_KEYDOWN , SDLK_r):
+            map.tower[map.towerCnt].type  = 3
 
 
 def update():
