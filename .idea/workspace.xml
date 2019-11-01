@@ -52,7 +52,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Start_stage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\rabit\OneDrive\바탕 화면\defenceseoul\Defence_Seoul_2DGP\State_start.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -73,7 +73,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_state.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\rabit\OneDrive\바탕 화면\defenceseoul\Defence_Seoul_2DGP\State_main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -115,7 +115,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mygame.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\rabit\OneDrive\바탕 화면\defenceseoul\Defence_Seoul_2DGP\Defense_Seoul.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -185,7 +185,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Tower.py</url>
+          <url>file://$PROJECT_DIR$/Class_Tower.py</url>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -1,5 +1,5 @@
-import game_framework
-import main_state
+import framework
+import State_main
 from setting import *
 from pico2d import *
 
@@ -27,7 +27,7 @@ def handle_events():
     events = get_events()
     for event in events:
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
-            game_framework.pop_state()
+            framework.pop_state()
 
 
 
@@ -38,7 +38,7 @@ def update():
 def draw():
     clear_canvas()
 #   self, left, bottom, width, height, x, y, w = None, h = None)
-    main_state.draw()
+    State_main.draw()
     Img.clip_draw(0, 0, 1362, 345, BackWIDTH / 2, BackHIEGHT / 2, BackWIDTH, BackHIEGHT / 2)
 
     update_canvas()

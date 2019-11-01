@@ -1,6 +1,6 @@
 from pico2d import *
 from setting import *
-import Boat_class
+import Class_Boat
 
 class Tower:
     HP_font = None

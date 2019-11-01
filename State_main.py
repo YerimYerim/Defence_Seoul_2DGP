@@ -1,5 +1,5 @@
 
-from Boat_class import *
+from Class_Boat import *
 from map import *
 
 BackGround = None
@@ -105,7 +105,7 @@ def update():
             boat[i].hp = map.stage * 10
             boat[i].speed += map.stage / 5
             boat[i].hp = map.stage * 10
-        game_framework.push_state(NextStage)
+        framework.push_state(State_NextStage)
     delay(speedy)
 
 

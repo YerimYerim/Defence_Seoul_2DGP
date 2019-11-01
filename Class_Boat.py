@@ -1,11 +1,11 @@
-import game_framework
+import framework
 import pico2d
-import main_state
+import State_main
 from setting import *
 from pico2d import *
 import gameover_stage
-import NextStage
-from game_framework import *
+import State_NextStage
+from framework import *
 
 class Boat:
     Img = None
@@ -152,7 +152,7 @@ class Boat:
             self.do()
         if self.state is 3:
             stage = 1
-            game_framework.push_state(gameover_stage)
+            framework.push_state(gameover_stage)
             print("push")
 
         pass
