@@ -30,12 +30,12 @@ class Boat:
     def Is_dead(self):
         if self.move_times >= Tile_SIZE * 27:
             self.state = 3
-        if self.hp <= 0:
+        if self.hp < 0:
             self.state = 2
         else:
             pass
     def draw(self):
-        if self.state < 2:
+        if self.hp >= 1:
             s = str( int (self.hp))
             self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE + 5, Boat_IMG_SIZE,
                             (self.R.left+self.R.right) / 2 + 5, (self.R.top + self.R.bot) / 2 + 15, Tile_SIZE - 10, Tile_SIZE - 10)

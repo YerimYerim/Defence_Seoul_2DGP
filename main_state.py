@@ -7,8 +7,6 @@ running = True
 speedy = 0.02
 font = None
 name = "MainState"
-damage = 0
-
 boat = None
 map = None
 hpsum  = None
@@ -80,7 +78,7 @@ def handle_events():
 
 
 def update():
-    global boat, map, BackHIEGHT , tmpR , damage , hpsum
+    global boat, map, BackHIEGHT , tmpR , hpsum
     hpsum = 0
     for i in range(map.stage):
         boat[i].update()
@@ -93,7 +91,6 @@ def update():
             tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat[z].R.left - Tile_SIZE* 3 , BackHIEGHT - boat[z].R.bot + Tile_SIZE*3, boat[z].R.right + Tile_SIZE*3, BackHIEGHT - boat[z].R.top - Tile_SIZE*3
             if boat[z].state is 1 and InterSectRECT((map.tower[i].R.left + map.tower[i].R.right) / 2, (map.tower[i].R.bot + map.tower[i].R.top) / 2 , tmpR):
                 boat[z].hp -= 0.01
-                damage = 0
                 pass
      #       print_fps
 
@@ -108,7 +105,7 @@ def update():
             boat[i].hp = map.stage * 10
             boat[i].speed += map.stage / 5
             boat[i].hp = map.stage * 10
-            game_framework.push_state(NextStage)
+        game_framework.push_state(NextStage)
     delay(speedy)
 
 
