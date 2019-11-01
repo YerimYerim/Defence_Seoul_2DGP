@@ -14,6 +14,7 @@ class Map:
         self.NoCnt = 38
         self.gold = 10
         self.stage = 1
+        self.moveboat  = 1
         self.No = (
         (2, 0), (2, 1), (3, 1), (3, 2), (3, 3), (4, 3), (4, 4), (5, 4), (5, 5), (5, 6), (4, 6), (4, 7), (3, 7), (3, 7),
         (3, 8), (3, 9), (4, 9), (4, 10), (4, 11), (5, 11), (5, 12), (5, 13), (4, 13), (4, 14), (3, 14), (3, 15),
@@ -35,7 +36,7 @@ class Map:
         if BackHIEGHT-self.TileRect.bot >= Tile_SIZE:
             draw_rectangle(self.TileRect.left,  BackHIEGHT- self.TileRect.bot + 2 , self.TileRect.right, BackHIEGHT - self.TileRect.top)
         for i in range(self.towerCnt):
-            if (self.tower[i].type >=0):
+            if self.tower[i].type >= 0:
                 self.tower[i].draw()
         s = str (self.gold)
         self.font.draw(Tile_SIZE * 10,Tile_SIZE * 1, s, ( 0,0,0))

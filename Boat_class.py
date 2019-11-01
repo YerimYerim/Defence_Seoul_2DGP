@@ -11,8 +11,9 @@ class Boat:
     Img = None
     HP_font = None
     def __init__(self):
+        self.frame_ = 0
         self.hp = 10
-        self.speed = 5.0
+        self.speed = 2.0
         self.type = 1  # 일반 1  보스 2
         self.R = RECT()
         self.R.bot, self.R.left, self.R.right, self.R.top = 7 * Tile_SIZE, 0, Tile_SIZE, 8 * Tile_SIZE
@@ -20,34 +21,25 @@ class Boat:
         self.white_color = [0, 0, 0]
         self.Boat_frame = 0
         self.frame_dir = 'R'
-        self.Img = load_image('Spritesheet\\boat.png')
-        self.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
+        if self.Img is None:
+            self.Img = load_image('Spritesheet\\boat.png')
+        if self.HP_font is None :
+            self.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
         self.state = 0 # 0 - 대기 1 - 시작 2 - dead
 
     def Is_dead(self):
-        if self.move_times >= Tile_SIZE * 27 or self.hp <= 0 :
+        if self.move_times >= Tile_SIZE * 27:
             self.state = 3
-            return False
-
+        if self.hp <= 0:
+            self.state = 2
         else:
             pass
     def draw(self):
-        s = str(self.hp)
-        if self.Boat_frame >= 8:
-            self.frame_dir = 'L'
-
-        elif self.Boat_frame == 1:
-            self.frame_dir = 'R'
-
-        if self.frame_dir == 'L':
-            self.Boat_frame -= 1
-
-        elif self.frame_dir == 'R':
-            self.Boat_frame += 1
-
-        self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE + 5, Boat_IMG_SIZE,
-                        (self.R.left+self.R.right) / 2 + 5, (self.R.top + self.R.bot) / 2 + 15, Tile_SIZE - 10, Tile_SIZE - 10)
-        self.HP_font.draw((self.R.left + self.R.right) / 2 + self.Boat_frame / 5 + 3 , (self.R.top + self.R.bot) / 2 + 20, s, self.white_color)
+        if self.state < 2:
+            s = str( int (self.hp))
+            self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE + 5, Boat_IMG_SIZE,
+                            (self.R.left+self.R.right) / 2 + 5, (self.R.top + self.R.bot) / 2 + 15, Tile_SIZE - 10, Tile_SIZE - 10)
+            self.HP_font.draw((self.R.left + self.R.right) / 2 + self.Boat_frame / 5 + 3 , (self.R.top + self.R.bot) / 2 + 20, s, self.white_color)
 
     def go_right(self):
         self.R.left += self.speed
@@ -138,6 +130,24 @@ class Boat:
 
     def update(self):
         global stage
+        if self.state < 2:
+            if self.Boat_frame >= 8:
+                self.frame_dir = 'L'
+
+            elif self.Boat_frame == 1:
+                self.frame_dir = 'R'
+
+            if self.frame_dir == 'L':
+                self.frame_ += 1
+                if self.frame_ % 5 == 0:
+                    self.Boat_frame -= 1
+
+            elif self.frame_dir == 'R':
+                self.frame_ += 1
+                if self.frame_ % 5 == 0:
+                    self.Boat_frame += 1
+
+        self.Is_dead()
         if self.state is 1:
             self.do()
         if self.state is 3:

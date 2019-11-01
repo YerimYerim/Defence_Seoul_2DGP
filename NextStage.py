@@ -12,8 +12,7 @@ def enter():
     Img = load_image('Spritesheet\\NextStage.png')
 
 def exit():
-    global Img
-    del Img
+    pass
 
 def pause():
     pass

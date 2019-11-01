@@ -4,28 +4,28 @@ from map import *
 
 BackGround = None
 running = True
-speedy = 0.03
+speedy = 0.02
 font = None
 name = "MainState"
 damage = 0
 
 boat = None
 map = None
-
+hpsum  = None
 
 def enter():
-    global boat, BackGround, map, tower
+    global boat, BackGround, map, tower , hpsum
     map = Map()
-    boat = Boat()
-    boat.hp = map.stage * 10
-    boat.speed += map.stage / 5
-
-    boat.Img = load_image('Spritesheet\\boat.png')
+    boat = [ Boat() for i in range(map.stage)]
+    for i in range(map.stage):
+        boat[i].hp = map.stage * 10
+        boat[i].speed += map.stage / 5
     BackGround = load_image('Spritesheet\\resource.png')
-
+    hpsum = 0
 
 def exit():
-    global boat
+    global boat , map
+    del map
     del boat
 
 
@@ -48,8 +48,7 @@ def handle_events():
         if event.type == SDL_MOUSEBUTTONDOWN:
             if (map.tower[map.towerCnt].type >= 0 and map.gold > 0 and map.select(event.x , event.y) is not False and  Tile_SIZE * 8 > event.y ) :
                 for i in range(map.towerCnt):
-                    print("검사는..하냐")
-                    print( map.tower[i].R.left , map.tower[i].R.bot , map.select(event.x , event.y).left ,map.select(event.x , event.y).bot )
+                    print(map.tower[i].R.left , map.tower[i].R.bot , map.select(event.x , event.y).left ,map.select(event.x , event.y).bot )
                     if map.select(event.x , event.y).left is map.tower[i].R.left and map.select(event.x , event.y).bot is map.tower[i].R.bot:
                         return
                 map.tower[map.towerCnt].R.set (map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
@@ -63,10 +62,10 @@ def handle_events():
                         map.tower[map.towerCnt].type = i
                         print(i)
         #     print (event.x , event.y)
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
-            boat.hp -= 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-            boat.state = 1
+            for i in range(map.moveboat):
+                if boat[i] is not 2:
+                    boat[i].state = 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
             speedy -= 0.002
             pass
@@ -81,24 +80,35 @@ def handle_events():
 
 
 def update():
-    global boat, map, BackHIEGHT , tmpR , damage
-    boat.update()
+    global boat, map, BackHIEGHT , tmpR , damage , hpsum
+    hpsum = 0
+    for i in range(map.stage):
+        boat[i].update()
+        if boat[i].state is 0 and boat[i-1].move_times > Tile_SIZE * 2 - 2:
+            boat[i].state = 1
     map.update()
     for i in range(map.towerCnt):
-        tmpR = RECT()
-        tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat.R.left - Tile_SIZE* 3 , BackHIEGHT -boat.R.bot + Tile_SIZE*3, boat.R.right + Tile_SIZE*3, BackHIEGHT - boat.R.top - Tile_SIZE*3
-        if boat.state is not 0 and InterSectRECT((map.tower[i].R.left + map.tower[i].R.right) / 2 , (map.tower[i].R.bot + map.tower[i].R.top) / 2 , tmpR):
-            damage += speedy
-            if damage > 1:
-                boat.hp -= 1
+        for z in range(map.stage):
+            tmpR = RECT()
+            tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat[z].R.left - Tile_SIZE* 3 , BackHIEGHT - boat[z].R.bot + Tile_SIZE*3, boat[z].R.right + Tile_SIZE*3, BackHIEGHT - boat[z].R.top - Tile_SIZE*3
+            if boat[z].state is 1 and InterSectRECT((map.tower[i].R.left + map.tower[i].R.right) / 2, (map.tower[i].R.bot + map.tower[i].R.top) / 2 , tmpR):
+                boat[z].hp -= 0.01
                 damage = 0
-            pass
-     #       print_fps(0,0)
-    if boat.hp <= 0:
-        boat.__init__()
+                pass
+     #       print_fps
+
+    for i in range(map.stage):
+        hpsum += boat[i].hp
+
+    if hpsum <= 0:
         map.stage += 1
-        boat.hp = map.stage * 10
-        game_framework.push_state(NextStage)
+        boat = [Boat() for i in range(map.stage)]
+        map.gold += map.stage - 1
+        for i in range(map.stage):
+            boat[i].hp = map.stage * 10
+            boat[i].speed += map.stage / 5
+            boat[i].hp = map.stage * 10
+            game_framework.push_state(NextStage)
     delay(speedy)
 
 
@@ -106,7 +116,9 @@ def draw():
     global BackWIDTH, BackHIEGHT, BackWIDTH, BackHIEGHT
     clear_canvas()
     BackGround.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
-    boat.draw()
+    for i in range(map.stage):
+        if boat[i].state is not 2:
+            boat[i].draw()
     map.draw()
     update_canvas()
 
