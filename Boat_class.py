@@ -8,6 +8,8 @@ import NextStage
 from game_framework import *
 
 class Boat:
+    Img = None
+    HP_font = None
     def __init__(self):
         self.hp = 10
         self.speed = 5.0
@@ -15,8 +17,6 @@ class Boat:
         self.R = RECT()
         self.R.bot, self.R.left, self.R.right, self.R.top = 7 * Tile_SIZE, 0, Tile_SIZE, 8 * Tile_SIZE
         self.move_times = 0
-        self.HP_font = None
-        self.Img = None
         self.white_color = [0, 0, 0]
         self.Boat_frame = 0
         self.frame_dir = 'R'

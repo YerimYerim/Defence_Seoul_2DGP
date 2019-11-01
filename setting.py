@@ -50,7 +50,6 @@ Boat_IMG_SIZE = 50
 Tile_SIZE = 57
 x = 0
 y = 0
-stage = 1
 
 SelectRect = [RECT() for i in range(5)]
 for i in range(4):

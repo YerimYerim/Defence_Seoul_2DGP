@@ -9,20 +9,17 @@ font = None
 name = "MainState"
 damage = 0
 
-#tower = None
 boat = None
 map = None
-gold = None
+
 
 def enter():
-    global boat, BackGround, stage, map, tower, gold
-    gold = 10
-    stage = 1
-    print(stage)
-    boat = Boat()
-    boat.hp = stage * 10
-    boat.speed += stage / 5
+    global boat, BackGround, map, tower
     map = Map()
+    boat = Boat()
+    boat.hp = map.stage * 10
+    boat.speed += map.stage / 5
+
     boat.Img = load_image('Spritesheet\\boat.png')
     BackGround = load_image('Spritesheet\\resource.png')
 
@@ -49,7 +46,7 @@ def handle_events():
         if event.type == SDL_MOUSEMOTION:
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            if (map.tower[map.towerCnt].type >= 0 and gold > 0 and map.select(event.x , event.y) is not False and  Tile_SIZE * 8 > event.y ) :
+            if (map.tower[map.towerCnt].type >= 0 and map.gold > 0 and map.select(event.x , event.y) is not False and  Tile_SIZE * 8 > event.y ) :
                 for i in range(map.towerCnt):
                     print("검사는..하냐")
                     print( map.tower[i].R.left , map.tower[i].R.bot , map.select(event.x , event.y).left ,map.select(event.x , event.y).bot )
@@ -57,7 +54,7 @@ def handle_events():
                         return
                 map.tower[map.towerCnt].R.set (map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
                 map.towerCnt += 1
-                gold -= 1
+                map.gold -= 1
             elif map.select(event.x, event.y) is False :
                 map.tower[map.towerCnt].type = -1
             else:
@@ -84,7 +81,7 @@ def handle_events():
 
 
 def update():
-    global boat, map, BackHIEGHT , tmpR , damage , stage
+    global boat, map, BackHIEGHT , tmpR , damage
     boat.update()
     map.update()
     for i in range(map.towerCnt):
@@ -99,8 +96,8 @@ def update():
      #       print_fps(0,0)
     if boat.hp <= 0:
         boat.__init__()
-        stage += 1
-        boat.hp = stage * 10
+        map.stage += 1
+        boat.hp = map.stage * 10
         game_framework.push_state(NextStage)
     delay(speedy)
 
