@@ -29,8 +29,6 @@ def handle_events():
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
             framework.pop_state()
 
-
-
 def update():
     delay(0.03)
     pass

@@ -34,12 +34,14 @@ class Boat:
             self.state = 2
         else:
             pass
+
     def draw(self):
         if self.hp >= 1:
             s = str( int (self.hp))
             self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE + 5, Boat_IMG_SIZE,
-                            (self.R.left+self.R.right) / 2 + 5, (self.R.top + self.R.bot) / 2 + 15, Tile_SIZE - 10, Tile_SIZE - 10)
-            self.HP_font.draw((self.R.left + self.R.right) / 2 + self.Boat_frame / 5 + 3 , (self.R.top + self.R.bot) / 2 + 20, s, self.white_color)
+                            (self.R.left+self.R.right) / 2 - 5  , (self.R.top + self.R.bot) / 2 + 15, Tile_SIZE + 10, Tile_SIZE + 10 )
+
+            self.HP_font.draw((self.R.left + self.R.right) / 2 + self.Boat_frame / 5 - 5 , (self.R.top + self.R.bot) / 2 + 25, s, self.white_color)
 
     def go_right(self):
         self.R.left += self.speed
