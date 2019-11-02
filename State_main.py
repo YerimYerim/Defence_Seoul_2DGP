@@ -79,6 +79,7 @@ def handle_events():
 
 def update():
     global boat, map, BackHIEGHT , tmpR , hpsum
+    print("메인")
     hpsum = 0
     for i in range(map.stage):
         boat[i].update()

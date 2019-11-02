@@ -26,6 +26,7 @@ def handle_events():
     for event in events:
         if event.type == SDL_MOUSEBUTTONDOWN:
             framework.change_state(State_main)
+            print("메ㄴ인으로넘어감")
             pass
 
 def update():
