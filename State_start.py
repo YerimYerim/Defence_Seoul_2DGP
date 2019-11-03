@@ -10,11 +10,14 @@ def enter():
     global start_Img , start_Sound
     start_Img = load_image('Map\\start.png')
     start_Sound = load_music('sound\\대기.mp3')
-    start_Sound.set_volune(64)
-    start_Sound.repeat_paly()
+    start_Sound.set_volume(128)
+    print("재생")
+    start_Sound.repeat_play()
+
+
 def exit():
-    global start_Img
-    del start_Img
+    global start_Img,start_Sound
+    del start_Img , start_Sound
 
 def pause():
     pass
