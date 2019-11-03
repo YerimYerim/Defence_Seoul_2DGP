@@ -7,9 +7,11 @@ start_Img = None
 start_Sound = None
 name = "Start_state"
 def enter():
-    global start_Img
+    global start_Img , start_Sound
     start_Img = load_image('Map\\start.png')
-
+    start_Sound = load_music('sound\\대기.mp3')
+    start_Sound.set_volune(64)
+    start_Sound.repeat_paly()
 def exit():
     global start_Img
     del start_Img
