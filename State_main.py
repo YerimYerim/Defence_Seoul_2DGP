@@ -10,9 +10,9 @@ name = "MainState"
 boat = None
 map = None
 hpsum  = None
-
+main_bgm = None
 def enter():
-    global boat, BackGround, map, tower , hpsum
+    global boat, BackGround, map, tower , hpsum , main_bgm
     map = Map()
     boat = [ Boat() for i in range(map.stage)]
     for i in range(map.stage):
@@ -20,10 +20,13 @@ def enter():
         boat[i].speed += map.stage / 5
     BackGround = load_image('Spritesheet\\resource.png')
     hpsum = 0
+    main_bgm = load_music('sound\\낙찰.mp3')
+    main_bgm.set_volume(64)
+    main_bgm.repeat_play()
 
 def exit():
-    global boat , map
-    del map
+    global boat , map , main_bgm
+    del map , main_bgm
     del boat
 
 

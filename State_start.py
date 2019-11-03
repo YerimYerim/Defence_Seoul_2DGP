@@ -12,8 +12,8 @@ def enter():
     start_Img = load_image('Map\\start.png')
     start_Sound = load_music('sound\\대기.mp3')
     start_Sound.set_volume(128)
-    button_sound = load_wav('sound\\button.mp3')
-    button_sound.set_volume(50)
+#    button_sound = load_wav('sound\\button.wav')
+#    button_sound.set_volume(50)
     print("재생")
     start_Sound.repeat_play()
 
@@ -34,7 +34,7 @@ def handle_events():
     events = get_events()
     for event in events:
         if event.type == SDL_MOUSEBUTTONDOWN:
-            button_sound.play
+#            button_sound.play
             framework.change_state(State_main)
             print("메ㄴ인으로넘어감")
             pass
