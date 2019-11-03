@@ -1,6 +1,8 @@
 from pico2d import *
 from setting import *
 import Class_Boat
+from Class_Bullet import*
+
 
 class Tower:
     HP_font = None
@@ -13,7 +15,7 @@ class Tower:
         self.Boat_frame = 0
         self.range = Tile_SIZE * 3
         self.type = -1       # 0- 불 1 - 냉기  2 - 전기 3 - 강등
-
+        self.bullet = Bullet()
         if Tower.Img is None:
             Tower.Img = load_image('Spritesheet\\resource.png')
             Tower.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
@@ -25,5 +27,4 @@ class Tower:
 
     def update(self):
         self.angle += 0.01
-
         pass
