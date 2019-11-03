@@ -4,6 +4,7 @@ from setting import *
 from pico2d import *
 
 start_Img = None
+start_Sound = None
 name = "Start_state"
 def enter():
     global start_Img
