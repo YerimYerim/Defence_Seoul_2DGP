@@ -11,8 +11,10 @@ boat = None
 map = None
 hpsum  = None
 main_bgm = None
+boat_move_bgm = None
+volume = 0
 def enter():
-    global boat, BackGround, map, tower , hpsum , main_bgm
+    global boat, BackGround, map, tower , hpsum , main_bgm , boat_move_bgm
     map = Map()
     boat = [ Boat() for i in range(map.stage)]
     for i in range(map.stage):
@@ -20,13 +22,14 @@ def enter():
         boat[i].speed += map.stage / 5
     BackGround = load_image('Spritesheet\\resource.png')
     hpsum = 0
-    main_bgm = load_music('sound\\낙찰.mp3')
+    main_bgm = load_music('sound\\테란브금.mp3')
     main_bgm.set_volume(64)
     main_bgm.repeat_play()
+    boat_move_bgm = load_music('sound\\낙찰.mp3')
 
 def exit():
-    global boat , map , main_bgm
-    del map , main_bgm
+    global boat , map , main_bgm , boat_move_bgm
+    del map , main_bgm , boat_move_bgm
     del boat
 
 
@@ -39,7 +42,7 @@ def resume():
 
 
 def handle_events():
-    global running,speedy , gold
+    global running,speedy , gold , volume
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -64,6 +67,8 @@ def handle_events():
                         print(i)
         #     print (event.x , event.y)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
+            boat_move_bgm.set_volume(volume)
+            boat_move_bgm.repeat_play()
             for i in range(map.moveboat):
                 if boat[i] is not 2:
                     boat[i].state = 1
@@ -81,7 +86,7 @@ def handle_events():
 
 
 def update():
-    global boat, map, BackHIEGHT , tmpR , hpsum
+    global boat, map, BackHIEGHT , tmpR , hpsum , boat_move_bgm , volume
     print("메인")
     hpsum = 0
     for i in range(map.stage):
@@ -109,7 +114,12 @@ def update():
             boat[i].hp = map.stage * 10
             boat[i].speed += map.stage / 5
             boat[i].hp = map.stage * 10
+        main_bgm.repeat_play()
         framework.push_state(State_NextStage)
+
+    boat_move_bgm.set_volume(volume)
+    if (volume < 100):
+        volume += 1
     delay(speedy)
 
 
