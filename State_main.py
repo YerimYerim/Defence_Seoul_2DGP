@@ -55,7 +55,8 @@ def handle_events():
                     print(map.tower[i].Rectangle.left , map.tower[i].Rectangle.bot , map.select(event.x , event.y).left ,map.select(event.x , event.y).bot )
                     if map.select(event.x , event.y).left is map.tower[i].Rectangle.left and map.select(event.x , event.y).bot is map.tower[i].Rectangle.bot:
                         return
-                map.tower[map.towerCnt].Rectangle.set (map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
+                map.tower[map.towerCnt].Rectangle.set(map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
+                map.tower[map.towerCnt].bullet.type = map.tower[map.towerCnt].type
                 map.towerCnt += 1
                 map.gold -= 1
             elif map.select(event.x, event.y) is False :
@@ -92,16 +93,18 @@ def update():
         boat[i].update()
         if boat[i].state is 0 and boat[i-1].Move_Times > Tile_SIZE * 2 - 2:
             boat[i].state = 1
-    map.update()
+
     for i in range(map.towerCnt):
         for z in range(map.stage):
             tmpR = RECT()
             tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat[z].Rectangle.left - Tile_SIZE* 3 , BackHIEGHT - boat[z].Rectangle.bot + Tile_SIZE*3, boat[z].Rectangle.right + Tile_SIZE*3, BackHIEGHT - boat[z].Rectangle.top - Tile_SIZE*3
             if boat[z].state is 1 and InterSectRECT((map.tower[i].Rectangle.left + map.tower[i].Rectangle.right) / 2, (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2 , tmpR):
                 boat[z].Hp -= 0.01
+                map.tower[i].bullet.To[0] = ( boat[z].Rectangle.left + boat[z].Rectangle.right ) / 2
+                map.tower[i].bullet.To[1] =  ( boat[z].Rectangle.top + boat[z].Rectangle.bot) / 2
                 pass
      #       print_fps
-
+    map.update()
     for i in range(map.stage):
         hpsum += boat[i].Hp
 
