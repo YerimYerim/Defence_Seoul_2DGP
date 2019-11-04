@@ -10,7 +10,7 @@ from Class_Boat import *
 class Bullet :
     From = None
     To = None
-    def __init__(self , FROM = Tower(), x, y):
+    def __init__(self , FROM = Tower(), x = int(), y = int ()):
         self.From = FROM
         self.x, self.y = (self.From.Rectangle.left + self.From.Rectangle.right) / 2 , (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
         self.To = (x, y)
@@ -18,22 +18,15 @@ class Bullet :
         self.Image = load_image('Spritesheet\\bullet.png')
         pass
     def draw(self):
-        if self.type is 0:
-            self.Image.clip_draw(65 * self.type, 0, 44, 44, self.x , self.y , 20, 20 )
-            pass
-        if self.type is 1:
-            self.Image.clip_draw(65,0,44,44, self.x , self.y , 20, 20 )
-            pass
-        if self.type is 2:
-            self.Image.clip_draw( )
-            pass
-        if self.type is 3:
-            self.Image.clip_draw( )
-            pass
-
-
+        if self.type >= 0:
+            self.Image.clip_draw(65 * self.type, 0, 44, 44, self.x, self.y , 20, 20 )
         pass
     def update(self):
+        if self.To[0] is self.x:
+            if self.To[1] is self.y:
+                self.x , self.y = (self.From.Rectangle.left + self.From.Rectangle.right) / 2 , (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
+        else:
+            
 
 
 
