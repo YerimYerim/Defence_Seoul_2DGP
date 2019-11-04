@@ -9,19 +9,19 @@ font = None
 name = "MainState"
 boat = None
 map = None
-hpsum  = None
+HpSum  = None
 main_bgm = None
 boat_move_bgm = None
 volume = 0
 def enter():
-    global boat, BackGround, map, tower , hpsum , main_bgm , boat_move_bgm
+    global boat, BackGround, map, tower , HpSum , main_bgm , boat_move_bgm
     map = Map()
     boat = [ Boat() for i in range(map.stage)]
     for i in range(map.stage):
         boat[i].Hp = map.stage * 10
         boat[i].Speed += map.stage / 5
     BackGround = load_image('Spritesheet\\resource.png')
-    hpsum = 0
+    HpSum = 0
     main_bgm = load_music('sound\\테란브금.mp3')
     main_bgm.set_volume(64)
     main_bgm.repeat_play()
@@ -50,16 +50,20 @@ def handle_events():
         if event.type == SDL_MOUSEMOTION:
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            if (map.tower[map.towerCnt].type >= 0 and map.gold > 0 and map.select(event.x , event.y) is not False and  Tile_SIZE * 8 > event.y ) :
+            if map.tower[map.towerCnt].type >= 0 and map.gold > 0 and \
+                    map.select(event.x , event.y) is not False and Tile_SIZE * 8 > event.y:
                 for i in range(map.towerCnt):
-                    print(map.tower[i].Rectangle.left , map.tower[i].Rectangle.bot , map.select(event.x , event.y).left ,map.select(event.x , event.y).bot )
-                    if map.select(event.x , event.y).left is map.tower[i].Rectangle.left and map.select(event.x , event.y).bot is map.tower[i].Rectangle.bot:
+                    if map.select(event.x , event.y).left is map.tower[i].Rectangle.left and \
+                            map.select(event.x, event.y).bot is map.tower[i].Rectangle.bot:
                         return
-                map.tower[map.towerCnt].Rectangle.set(map.select(event.x, event.y).left, map.select(event.x, event.y).bot , map.select(event.x, event.y).right ,map.select(event.x, event.y).top)
+                map.tower[map.towerCnt].Rectangle.set(map.select(event.x, event.y).left,
+                                                      map.select(event.x, event.y).bot,
+                                                      map.select(event.x, event.y).right,
+                                                      map.select(event.x, event.y).top)
                 map.tower[map.towerCnt].bullet.type = map.tower[map.towerCnt].type
                 map.towerCnt += 1
                 map.gold -= 1
-            elif map.select(event.x, event.y) is False :
+            elif map.select(event.x, event.y) is False:
                 map.tower[map.towerCnt].type = -1
             else:
                 for i in range(4):
@@ -86,9 +90,8 @@ def handle_events():
 
 
 def update():
-    global boat, map, BackHIEGHT , tmpR , hpsum , boat_move_bgm , volume
-    print("메인")
-    hpsum = 0
+    global boat, map, BackHIEGHT, tmpR , HpSum, boat_move_bgm , volume
+    HpSum = 0
     for i in range(map.stage):
         boat[i].update()
         if boat[i].state is 0 and boat[i-1].Move_Times > Tile_SIZE * 2 - 2:
@@ -97,18 +100,22 @@ def update():
     for i in range(map.towerCnt):
         for z in range(map.stage):
             tmpR = RECT()
-            tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat[z].Rectangle.left - Tile_SIZE* 3 , BackHIEGHT - boat[z].Rectangle.bot + Tile_SIZE*3, boat[z].Rectangle.right + Tile_SIZE*3, BackHIEGHT - boat[z].Rectangle.top - Tile_SIZE*3
-            if boat[z].state is 1 and InterSectRECT((map.tower[i].Rectangle.left + map.tower[i].Rectangle.right) / 2, (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2 , tmpR):
+            tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat[z].Rectangle.left - Tile_SIZE * 3, \
+                                                        BackHIEGHT - boat[z].Rectangle.bot + Tile_SIZE*3, \
+                                                        boat[z].Rectangle.right + Tile_SIZE*3, \
+                                                        BackHIEGHT - boat[z].Rectangle.top - Tile_SIZE*3
+            if boat[z].state is 1 and InterSectRECT((map.tower[i].Rectangle.left + map.tower[i].Rectangle.right) / 2,
+                                                    (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2 , tmpR):
                 boat[z].Hp -= 0.01
-                map.tower[i].bullet.To[0] = ( boat[z].Rectangle.left + boat[z].Rectangle.right ) / 2
-                map.tower[i].bullet.To[1] =  ( boat[z].Rectangle.top + boat[z].Rectangle.bot) / 2
+                map.tower[i].bullet.To = boat[z]
+                map.tower[i].bullet.To = boat[z]
                 pass
      #       print_fps
     map.update()
     for i in range(map.stage):
-        hpsum += boat[i].Hp
+        HpSum += boat[i].Hp
 
-    if hpsum <= 0:
+    if HpSum <= 0:
         map.stage += 1
         boat = [Boat() for i in range(map.stage)]
         map.gold += map.stage - 1
