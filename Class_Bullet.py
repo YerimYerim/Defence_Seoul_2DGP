@@ -6,12 +6,14 @@ import gameover_stage
 from Class_Tower import *
 from Class_Boat import *
 class Bullet :
-    def __init__(self , type):
-        self.From = Tower()
-        self.To = Boat()
+    From = Tower()
+    To = Boat()
+    def __init__(self , FROM , TO ):
+        self.From = FROM
+        self.To = TO
         self.Frame = 0
         self.Type = -1
-        self.Image = Image()
+        self.Image = load_image()
         pass
     def draw(self):
         pass
