@@ -64,7 +64,6 @@ def handle_events():
                 for i in range(4):
                     if InterSectRECT(event.x, event.y, Select_Tower_Rect[i]):
                         map.tower[map.towerCnt].type = i
-                        print(i)
         #     print (event.x , event.y)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
             boat_move_bgm.set_volume(volume)
@@ -118,7 +117,7 @@ def update():
         framework.push_state(State_NextStage)
 
     boat_move_bgm.set_volume(volume)
-    if (volume < 100):
+    if volume < 100:
         volume += 1
     delay(speedy)
 
