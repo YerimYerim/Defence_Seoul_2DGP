@@ -31,5 +31,5 @@ class Bullet :
         elif self.To is not None:
             distance = math.sqrt(((self.To.Rectangle.left + self.To.Rectangle.right) / 2 - self.x) ** 2
                                  + ((self.To.Rectangle.top + self.To.Rectangle.bot) / 2 - self.y)** 2)
-            self.y += (((self.To.Rectangle.top + self.To.Rectangle.bot) / 2 - self.y)/distance) * 3
-            self.x += (((self.To.Rectangle.right + self.To.Rectangle.left) / 2 - self.x)/distance) * 3
+            self.y += (((self.To.Rectangle.top + self.To.Rectangle.bot) / 2 - self.y)/distance) * 10
+            self.x += (((self.To.Rectangle.right + self.To.Rectangle.left) / 2 - self.x)/distance) * 10
