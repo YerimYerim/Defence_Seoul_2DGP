@@ -7,15 +7,16 @@ import State_start
 name = "Gameover_state"
 Img = None
 
+
 def enter():
-    global Img, stage
-    stage = 1
+    global Img
     Img = load_image('Spritesheet\\GameOver.png')
 
+
 def exit():
-    global Img , stage
-    stage = 1
+    global Img
     del Img
+
 
 def pause():
     pass
@@ -32,9 +33,11 @@ def handle_events():
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
             framework.change_state(State_start)
 
+
 def update():
     delay(0.03)
     pass
+
 
 def draw():
     clear_canvas()

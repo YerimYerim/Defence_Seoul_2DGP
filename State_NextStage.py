@@ -11,8 +11,10 @@ def enter():
     global Img
     Img = load_image('Spritesheet\\NextStage.png')
 
+
 def exit():
     pass
+
 
 def pause():
     pass
@@ -23,15 +25,17 @@ def resume():
 
 
 def handle_events():
-    global running,stage , boat
+    global running
     events = get_events()
     for event in events:
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
             framework.pop_state()
 
+
 def update():
     delay(0.03)
     pass
+
 
 def draw():
     clear_canvas()

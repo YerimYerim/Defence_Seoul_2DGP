@@ -19,8 +19,9 @@ def enter():
 
 
 def exit():
-    global start_Img,start_Sound, button_sound
-    del start_Img , start_Sound , button_sound
+    global start_Img, start_Sound
+    del start_Img , start_Sound
+
 
 def pause():
     pass
@@ -30,17 +31,18 @@ def resume():
     pass
 
 def handle_events():
-    global running,button_sound
+    global button_sound , events
     events = get_events()
     for event in events:
         if event.type == SDL_MOUSEBUTTONDOWN:
-#            button_sound.play
             framework.change_state(State_main)
             print("메ㄴ인으로넘어감")
-            pass
+
 
 def update():
     pass
+
+
 def draw():
     clear_canvas()
     start_Img.clip_draw(0, 0, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)

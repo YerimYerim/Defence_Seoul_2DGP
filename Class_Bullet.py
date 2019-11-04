@@ -9,9 +9,9 @@ class Bullet :
     def __init__(self , type):
         self.From = Tower()
         self.To = Boat()
-        self.frame = 0
+        self.Frame = 0
         self.Type = -1
-        self.image = Image()
+        self.Image = Image()
         pass
     def draw(self):
         pass
