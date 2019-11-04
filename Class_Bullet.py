@@ -19,10 +19,10 @@ class Bullet :
         pass
     def draw(self):
         if self.type is 0:
-            self.Image.clip_draw(0,0,44,44, self.x , self.y , 20, 20 )
+            self.Image.clip_draw(65 * self.type, 0, 44, 44, self.x , self.y , 20, 20 )
             pass
         if self.type is 1:
-            self.Image.clip_draw(0,0,44,44, self.x , self.y , 20, 20 )
+            self.Image.clip_draw(65,0,44,44, self.x , self.y , 20, 20 )
             pass
         if self.type is 2:
             self.Image.clip_draw( )
