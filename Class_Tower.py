@@ -23,10 +23,10 @@ class Tower:
             print(" 그림 업로드")
 
     def draw(self):
-        self.bullet.draw()
+
         self.Img.clip_composite_draw(13 + 16 * self.type + 142 * self.type, IMG_HEIGHT - 144 - 16, 144, 144, self.angle, ' ', self.Rectangle.left + Tile_SIZE / 2, BackHIEGHT - self.Rectangle.bot + Tile_SIZE / 2, Tile_SIZE, Tile_SIZE)
     #     print("타워그림")
-
+        self.bullet.draw()
     def update(self):
         self.bullet.update()
         self.angle += 0.01

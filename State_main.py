@@ -60,6 +60,7 @@ def handle_events():
                                                       map.select(event.x, event.y).bot,
                                                       map.select(event.x, event.y).right,
                                                       map.select(event.x, event.y).top)
+
                 map.tower[map.towerCnt].bullet.type = map.tower[map.towerCnt].type
                 map.tower[map.towerCnt].bullet.From = map.tower[map.towerCnt]
                 map.tower[map.towerCnt].bullet.x = (map.tower[map.towerCnt].Rectangle.right + map.tower[map.towerCnt].Rectangle.left)/2
@@ -110,16 +111,10 @@ def update():
                                                         BackHIEGHT - boat[z].Rectangle.top - Tile_SIZE*3
             if boat[z].state is 1 and InterSectRECT((map.tower[i].Rectangle.left + map.tower[i].Rectangle.right) / 2,
                                                     (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2, tmpR):
-                if map.tower[i].bullet.To is None:
-                    map.tower[i].bullet.To = boat[z]
-                else :
-                    map.tower[i].bullet.crashCheck(map.tower[i].bullet.To)
-                    if map.tower[i].bullet.To.Hp < 1:
-                        map.tower[i].bullet.__init__(map.tower[i])
+                if map.tower[i].bullet.To is None and boat[z].Hp > 0:
+                        map.tower[i].bullet.To = boat[z]
 
-                pass
-     #       print_fps
-    map.update()
+
     for i in range(map.stage):
         HpSum += boat[i].Hp
 
@@ -128,17 +123,33 @@ def update():
         boat = [Boat() for i in range(map.stage)]
         map.gold += map.stage - 1
         for i in range(map.stage):
-            boat[i].Hp = map.stage * 10
             boat[i].Speed += map.stage / 5
             boat[i].Hp = map.stage * 10
         main_bgm.repeat_play()
         for i in range(map.towerCnt):
             map.tower[i].bullet.__init__(map.tower[i])
+            map.tower[i].bullet.Comeback()
         framework.push_state(State_NextStage)
 
     boat_move_bgm.set_volume(volume)
     if volume < 100:
         volume += 1
+
+    for i in range(map.towerCnt): #포탄과 배 충돌쳌흐
+        if map.tower[i].bullet.To is not None :
+            tmpR.left, tmpR.bot, tmpR.right, tmpR.top =map.tower[i].bullet.To.Rectangle.left, \
+                                                        BackHIEGHT - map.tower[i].bullet.To.Rectangle.bot, \
+                                                       map.tower[i].bullet.To.Rectangle.right, \
+                                                        BackHIEGHT - map.tower[i].bullet.To.Rectangle.top
+            if InterSectRECT(map.tower[i].bullet.x,  BackHIEGHT - map.tower[i].bullet.y, tmpR):
+                if map.tower[i].bullet.To.Hp <= 0:
+                    map.tower[i].bullet.__init__(map.tower[i])
+                    map.tower[i].bullet.Comeback()
+                    return
+                map.tower[i].bullet.To.Hp = map.tower[i].bullet.To.Hp - 1
+                map.tower[i].bullet.__init__(map.tower[i])
+                map.tower[i].bullet.Comeback()
+    map.update()
     delay(speedy)
 
 

@@ -188,11 +188,6 @@
           <url>file://$PROJECT_DIR$/Class_Tower.py</url>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Class_Tower.py</url>
-          <line>26</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

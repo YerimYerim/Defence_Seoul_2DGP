@@ -15,7 +15,7 @@ class Bullet :
         print (self.From.Rectangle.left)
         self.x, self.y = (self.From.Rectangle.left + self.From.Rectangle.right) / 2 , (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
         self.To = None
-        self.type = -1
+        self.type = FROM.type
         self.Image = load_image('Spritesheet\\bullet.png')
         pass
     def draw(self):
@@ -23,13 +23,16 @@ class Bullet :
             self.Image.clip_draw(65 * self.type, 0, 44, 44, self.x, self.y, 20, 20 )
         pass
 
+    def Comeback(self):
+        self.x = (self.From.Rectangle.left + self.From.Rectangle.right) / 2
+        self.y = BackHIEGHT - (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
 
     def crashCheck(self , boat):
         tmpR = RECT()
-        tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat.Rectangle.left - Tile_SIZE, \
-                                                    BackHIEGHT - boat.Rectangle.bot + Tile_SIZE, \
-                                                    boat.Rectangle.right + Tile_SIZE , \
-                                                    BackHIEGHT - boat.Rectangle.top - Tile_SIZE
+        tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat.Rectangle.left , \
+                                                    BackHIEGHT - boat.Rectangle.bot , \
+                                                    boat.Rectangle.right, \
+                                                    BackHIEGHT - boat.Rectangle.top
         if InterSectRECT(self.x, self.y, tmpR):
             boat.Hp -= 1
             self.x = (self.From.Rectangle.left + self.From.Rectangle.right) / 2
@@ -44,7 +47,7 @@ class Bullet :
         elif self.To is not None:
             distance = math.sqrt(((self.To.Rectangle.left + self.To.Rectangle.right) / 2 - self.x) ** 2
                                  + ((self.To.Rectangle.top + self.To.Rectangle.bot) / 2 - self.y) ** 2)
-            self.y += (((self.To.Rectangle.top + self.To.Rectangle.bot + 2) / 2 - self.y)/distance)
-            self.x += (((self.To.Rectangle.right + self.To.Rectangle.left + 2) / 2 - self.x)/distance)
+            self.y += (((self.To.Rectangle.top + self.To.Rectangle.bot + 2) / 2 - self.y)/distance) * 5
+            self.x += (((self.To.Rectangle.right + self.To.Rectangle.left + 2) / 2 - self.x)/distance) * 5
 
 

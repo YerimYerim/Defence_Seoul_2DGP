@@ -39,7 +39,7 @@ class Boat:
         if self.Hp >= 1:
             s = str(int (self.Hp))
             self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE + 5, Boat_IMG_SIZE,
-                               (self.Rectangle.left + self.Rectangle.right) / 2 - 5, (self.Rectangle.top + self.Rectangle.bot) / 2 + 15, Tile_SIZE + 10, Tile_SIZE + 10)
+                               (self.Rectangle.left + self.Rectangle.right) / 2 , (self.Rectangle.top + self.Rectangle.bot) / 2 , Tile_SIZE , Tile_SIZE )
 
             self.HP_font.draw((self.Rectangle.left + self.Rectangle.right) / 2 + self.Boat_frame / 5 - 5, (self.Rectangle.top + self.Rectangle.bot) / 2 + 25, s, self.White_color)
 

@@ -33,7 +33,7 @@ class Map:
                 if InterSectRECT(x, y, self.TileRect) is True:
                     for n in range(38):
                         if i is self.No[n][0] and j is self.No[n][1]:
-                            self.TileRect.left, self.TileRect.bot, self.TileRect.right, self.TileRect.top = 0,0,0,0
+                            self.TileRect.left,  self.TileRect.bot, self.TileRect.right, self.TileRect.top = 0,0,0,0
                             return False
                     return self.TileRect
 
