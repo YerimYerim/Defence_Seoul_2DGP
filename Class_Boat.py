@@ -25,23 +25,23 @@ class Boat:
             self.Img = load_image('Spritesheet\\boat.png')
         if self.HP_font is None :
             self.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
-        self.state = 0 # 0 - 대기 1 - 시작 2 - dead
+        self.state = 0  # 0 - 대기 1 - 시작 2 - dead
 
     def Is_dead(self):
-        if self.Move_Times >= Tile_SIZE * 27:
+        if self.Move_Times >= Tile_SIZE * 28:
             self.state = 3
-        if self.Hp < 0:
+        if self.Hp <= 0:
             self.state = 2
         else:
             pass
 
     def draw(self):
-        if self.Hp >= 1:
+        if self.Hp >= 0:
             s = str(int (self.Hp))
             self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE + 5, Boat_IMG_SIZE,
-                               (self.Rectangle.left + self.Rectangle.right) / 2 , (self.Rectangle.top + self.Rectangle.bot) / 2 , Tile_SIZE , Tile_SIZE )
+                               (self.Rectangle.left + self.Rectangle.right) / 2, (self.Rectangle.top + self.Rectangle.bot) / 2 + 10, Tile_SIZE , Tile_SIZE )
 
-            self.HP_font.draw((self.Rectangle.left + self.Rectangle.right) / 2 + self.Boat_frame / 5 - 5, (self.Rectangle.top + self.Rectangle.bot) / 2 + 25, s, self.White_color)
+            self.HP_font.draw((self.Rectangle.left + self.Rectangle.right) / 2 + self.Boat_frame / 5 - 5, (self.Rectangle.top + self.Rectangle.bot) / 2 + 10, s, self.White_color)
 
     def go_right(self):
         self.Rectangle.left += self.Speed
