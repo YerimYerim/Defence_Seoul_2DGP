@@ -110,9 +110,9 @@ def update():
                                                         BackHIEGHT - boat[z].Rectangle.top - Tile_SIZE*3
             if boat[z].state is 1 and InterSectRECT((map.tower[i].Rectangle.left + map.tower[i].Rectangle.right) / 2,
                                                     (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2, tmpR):
-                boat[z].Hp -= 0.01
+
                 map.tower[i].bullet.To = boat[z]
-                map.tower[i].bullet.To = boat[z]
+                map.tower[i].bullet.crashCheck(boat[z])
                 pass
      #       print_fps
     map.update()
