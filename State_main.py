@@ -137,15 +137,16 @@ def update():
 
     for i in range(map.towerCnt): #포탄과 배 충돌쳌흐
         if map.tower[i].bullet.To is not None :
-            tmpR.left, tmpR.bot, tmpR.right, tmpR.top =map.tower[i].bullet.To.Rectangle.left, \
+            tmpR.left, tmpR.bot, tmpR.right, tmpR.top = map.tower[i].bullet.To.Rectangle.left, \
                                                         BackHIEGHT - map.tower[i].bullet.To.Rectangle.bot, \
-                                                       map.tower[i].bullet.To.Rectangle.right, \
+                                                        map.tower[i].bullet.To.Rectangle.right, \
                                                         BackHIEGHT - map.tower[i].bullet.To.Rectangle.top
             if InterSectRECT(map.tower[i].bullet.x,  BackHIEGHT - map.tower[i].bullet.y, tmpR):
                 if map.tower[i].bullet.To.Hp <= 0:
                     map.tower[i].bullet.__init__(map.tower[i])
                     map.tower[i].bullet.Comeback()
                     return
+
                 map.tower[i].bullet.To.Hp = map.tower[i].bullet.To.Hp - 1
                 map.tower[i].bullet.__init__(map.tower[i])
                 map.tower[i].bullet.Comeback()
