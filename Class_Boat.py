@@ -13,7 +13,7 @@ class Boat:
     def __init__(self):
         self.Frame = 0
         self.Hp = 10
-        self.Speed = 2.0
+        self.Speed = 1.0
         self.Type = 1  # 일반 1  보스 2
         self.Rectangle = RECT()
         self.Rectangle.bot, self.Rectangle.left, self.Rectangle.right, self.Rectangle.top = 7 * Tile_SIZE, 0, Tile_SIZE, 8 * Tile_SIZE
@@ -148,7 +148,7 @@ class Boat:
         if self.state is 1:
             self.do()
         if self.state is 3:
-            self.stage = 1
+            self.state = 1
             framework.push_state(gameover_stage)
             print("push")
 

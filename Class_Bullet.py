@@ -25,18 +25,15 @@ class Bullet :
 
 
     def crashCheck(self , boat):
-        print(boat.Rectangle.right)
-        print(self.y)
         tmpR = RECT()
-        tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat.Rectangle.left, \
-                                                    BackHIEGHT - boat.Rectangle.bot , \
-                                                    boat.Rectangle.right , \
-                                                    BackHIEGHT - boat.Rectangle.top
+        tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat.Rectangle.left - Tile_SIZE, \
+                                                    BackHIEGHT - boat.Rectangle.bot + Tile_SIZE, \
+                                                    boat.Rectangle.right + Tile_SIZE , \
+                                                    BackHIEGHT - boat.Rectangle.top - Tile_SIZE
         if InterSectRECT(self.x, self.y, tmpR):
             boat.Hp -= 1
             self.x = (self.From.Rectangle.left + self.From.Rectangle.right) / 2
             self.y = BackHIEGHT - (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
-            print("충돌")
 
 
     def update(self):
@@ -47,7 +44,7 @@ class Bullet :
         elif self.To is not None:
             distance = math.sqrt(((self.To.Rectangle.left + self.To.Rectangle.right) / 2 - self.x) ** 2
                                  + ((self.To.Rectangle.top + self.To.Rectangle.bot) / 2 - self.y) ** 2)
-            self.y += (((self.To.Rectangle.top + self.To.Rectangle.bot) / 2 - self.y)/distance) * 10
-            self.x += (((self.To.Rectangle.right + self.To.Rectangle.left) / 2 - self.x)/distance) * 10
+            self.y += (((self.To.Rectangle.top + self.To.Rectangle.bot + 2) / 2 - self.y)/distance)
+            self.x += (((self.To.Rectangle.right + self.To.Rectangle.left + 2) / 2 - self.x)/distance)
 
 

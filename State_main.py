@@ -110,9 +110,13 @@ def update():
                                                         BackHIEGHT - boat[z].Rectangle.top - Tile_SIZE*3
             if boat[z].state is 1 and InterSectRECT((map.tower[i].Rectangle.left + map.tower[i].Rectangle.right) / 2,
                                                     (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2, tmpR):
+                if map.tower[i].bullet.To is None:
+                    map.tower[i].bullet.To = boat[z]
+                else :
+                    map.tower[i].bullet.crashCheck(map.tower[i].bullet.To)
+                    if map.tower[i].bullet.To.Hp < 1:
+                        map.tower[i].bullet.__init__(map.tower[i])
 
-                map.tower[i].bullet.To = boat[z]
-                map.tower[i].bullet.crashCheck(boat[z])
                 pass
      #       print_fps
     map.update()
@@ -128,6 +132,8 @@ def update():
             boat[i].Speed += map.stage / 5
             boat[i].Hp = map.stage * 10
         main_bgm.repeat_play()
+        for i in range(map.towerCnt):
+            map.tower[i].bullet.__init__(map.tower[i])
         framework.push_state(State_NextStage)
 
     boat_move_bgm.set_volume(volume)
