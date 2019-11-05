@@ -24,10 +24,18 @@ class Bullet :
         pass
 
 
+    def crashCheck(self , boat):
+        if Crash_Circle_Rect(self.x , self.y, boat.Rectangle):
+            boat.hp -=1
+            self.x = self.From.Rectangle
+
+        pass
+
     def update(self):
         if self.To is not None and InterSectRECT(self.x, self.y, self.To.Rectangle):
             self.x, self.y = (self.From.Rectangle.left + self.From.Rectangle.right) / 2, \
                              (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
+
         elif self.To is not None:
             distance = math.sqrt(((self.To.Rectangle.left + self.To.Rectangle.right) / 2 - self.x) ** 2
                                  + ((self.To.Rectangle.top + self.To.Rectangle.bot) / 2 - self.y)** 2)

@@ -61,6 +61,10 @@ def handle_events():
                                                       map.select(event.x, event.y).right,
                                                       map.select(event.x, event.y).top)
                 map.tower[map.towerCnt].bullet.type = map.tower[map.towerCnt].type
+                map.tower[map.towerCnt].bullet.From = map.tower[map.towerCnt]
+                map.tower[map.towerCnt].bullet.x = (map.tower[map.towerCnt].Rectangle.right + map.tower[map.towerCnt].Rectangle.left)/2
+                map.tower[map.towerCnt].bullet.y = BackHIEGHT - (map.tower[map.towerCnt].Rectangle.bot + map.tower[map.towerCnt].Rectangle.top)/2
+
                 map.towerCnt += 1
                 map.gold -= 1
             elif map.select(event.x, event.y) is False:
@@ -105,7 +109,7 @@ def update():
                                                         boat[z].Rectangle.right + Tile_SIZE*3, \
                                                         BackHIEGHT - boat[z].Rectangle.top - Tile_SIZE*3
             if boat[z].state is 1 and InterSectRECT((map.tower[i].Rectangle.left + map.tower[i].Rectangle.right) / 2,
-                                                    (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2 , tmpR):
+                                                    (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2, tmpR):
                 boat[z].Hp -= 0.01
                 map.tower[i].bullet.To = boat[z]
                 map.tower[i].bullet.To = boat[z]
