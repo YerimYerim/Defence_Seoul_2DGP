@@ -40,6 +40,7 @@ def handle_events():
 
 
 def update():
+    delay(0.1)
     pass
 
 

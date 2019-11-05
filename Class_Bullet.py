@@ -12,12 +12,12 @@ class Bullet :
     To = None
     def __init__(self , FROM):
         self.From = FROM
-        print (self.From.Rectangle.left)
-        self.x, self.y = (self.From.Rectangle.left + self.From.Rectangle.right) / 2 , (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
+        self.x, self.y = (self.From.Rectangle.left + self.From.Rectangle.right) / 2, (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
         self.To = None
         self.type = FROM.type
         self.Image = load_image('Spritesheet\\bullet.png')
-        pass
+
+
     def draw(self):
         if self.type >= 0:
             self.Image.clip_draw(65 * self.type, 0, 44, 44, self.x, self.y, 20, 20 )
