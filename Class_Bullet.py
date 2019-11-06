@@ -27,16 +27,22 @@ class Bullet :
         self.x = (self.From.Rectangle.left + self.From.Rectangle.right) / 2
         self.y = BackHIEGHT - (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
 
-    def crashCheck(self , boat):
-        tmpR = RECT()
-        tmpR.left, tmpR.bot, tmpR.right, tmpR.top = boat.Rectangle.left , \
-                                                    BackHIEGHT - boat.Rectangle.bot , \
-                                                    boat.Rectangle.right, \
-                                                    BackHIEGHT - boat.Rectangle.top
-        if InterSectRECT(self.x, self.y, tmpR):
-            boat.Hp -= 1
-            self.x = (self.From.Rectangle.left + self.From.Rectangle.right) / 2
-            self.y = BackHIEGHT - (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
+    def crashCheck(self):
+        if self.To is not None:
+            tmpR = RECT()
+            tmpR.left, tmpR.bot, tmpR.right, tmpR.top = self.To.Rectangle.left, \
+                                                        BackHIEGHT - self.To.Rectangle.bot, \
+                                                        self.To.Rectangle.right, \
+                                                        BackHIEGHT - self.To.Rectangle.top
+            if InterSectRECT(self.x, BackHIEGHT - self.y, tmpR):
+                if self.To.Hp <= 0:
+                    self.__init__(self.From)
+                    self.Comeback()
+                    return
+
+                self.To.Hp = self.To.Hp - 1
+                self.__init__(self.From)
+                self.Comeback()
 
 
     def update(self):
