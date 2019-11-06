@@ -30,10 +30,9 @@ class Bullet :
     def crashCheck(self):
         if self.To is not None:
             tmpR = RECT()
-            tmpR.left, tmpR.bot, tmpR.right, tmpR.top = self.To.Rectangle.left, \
-                                                        BackHIEGHT - self.To.Rectangle.bot, \
-                                                        self.To.Rectangle.right, \
-                                                        BackHIEGHT - self.To.Rectangle.top
+            tmpR.left, tmpR.bot, tmpR.right, tmpR.top = self.To.Rectangle.left,  BackHIEGHT - self.To.Rectangle.bot, \
+                                                        self.To.Rectangle.right,  BackHIEGHT - self.To.Rectangle.top
+
             if InterSectRECT(self.x, BackHIEGHT - self.y, tmpR):
                 if self.To.Hp <= 0:
                     self.__init__(self.From)
