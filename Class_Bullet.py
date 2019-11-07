@@ -5,17 +5,13 @@ import State_start
 import gameover_stage
 from Class_Tower import *
 from Class_Boat import *
-from State_main import *
 from Tower_Type_Passive import *
-
 import random
 import math
 
-
-class Bullet:
+class Bullet :
     From = None
     To = None
-
     def __init__(self , FROM):
         self.From = FROM
         self.x, self.y = (self.From.Rectangle.left + self.From.Rectangle.right) / 2, (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
@@ -34,7 +30,6 @@ class Bullet:
         self.y = BackHIEGHT - (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
 
     def crashCheck(self):
-        if self.To is not None:
             tmpR = RECT()
             tmpR.left, tmpR.bot, tmpR.right, tmpR.top = self.To.Rectangle.left,  BackHIEGHT - self.To.Rectangle.bot, \
                                                         self.To.Rectangle.right,  BackHIEGHT - self.To.Rectangle.top
@@ -43,19 +38,21 @@ class Bullet:
                 if self.To.Hp <= 0:
                     self.__init__(self.From)
                     self.Comeback()
-                    return
+                    return False
 
                 self.To.Hp = self.To.Hp - 1
                 if self.type is Fire:
-                   pass
+                    Firing(self)
                 elif self.type is Ice:
-                    pass
+                    Icing(self)
                 elif self.type is Light:
-                    pass
+                    Lightning(self)
                 elif self.type is DownGrade:
-                    pass
+                    DownGrading(self)
                 self.__init__(self.From)
                 self.Comeback()
+                return True
+
 
 
     def update(self):
