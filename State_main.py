@@ -1,6 +1,7 @@
 
 from Class_Boat import *
 from map import *
+from Tower_Type_Passive import *
 
 BackGround = None
 running = True
@@ -13,8 +14,9 @@ HpSum  = None
 main_bgm = None
 boat_move_bgm = None
 volume = 0
+
 def enter():
-    global boat, BackGround, map, tower , HpSum , main_bgm , boat_move_bgm
+    global boat, BackGround, map, tower , HpSum , main_bgm , boat_move_bgm , Fire_Level, Ice_Level , Light_Level, DownGrade_Level
     map = Map()
     boat = [ Boat() for i in range(map.stage)]
     for i in range(map.stage):
@@ -26,6 +28,10 @@ def enter():
     main_bgm.set_volume(64)
     main_bgm.repeat_play()
     boat_move_bgm = load_music('sound\\낙찰.mp3')
+    Fire_Level = 1
+    Ice_Level = 1
+    Light_Level = 1
+    DownGrade_Level = 1
 
 def exit():
     global boat , map , main_bgm , boat_move_bgm
@@ -46,7 +52,7 @@ def handle_events():
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
-            running = False
+            framework.change_state(State_start)
         if event.type == SDL_MOUSEMOTION:
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
@@ -173,6 +179,7 @@ def draw():
         if boat[i].state is not 2:
             boat[i].draw()
     map.draw()
+    draw_Level(Fire_Level, Ice_Level, Light_Level, DownGrade_Level)
     update_canvas()
 
 

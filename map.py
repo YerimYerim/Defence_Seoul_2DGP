@@ -1,5 +1,6 @@
 
 from Class_Tower import *
+from Tower_Type_Passive import *
 
 class Map:
     font = None

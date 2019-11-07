@@ -34,6 +34,8 @@ def handle_events():
     global button_sound ,events
     events = get_events()
     for event in events:
+        if event.type == SDL_QUIT:
+            close_canvas()
         if event.type == SDL_MOUSEBUTTONDOWN:
             framework.change_state(State_main)
             print("메ㄴ인으로넘어감")
