@@ -50,12 +50,6 @@ class Bullet :
                     pass
                 elif self.type is DownGrade:
                     pass
-
-
-
-
-
-
                 self.__init__(self.From)
                 self.Comeback()
 
