@@ -47,13 +47,13 @@ class Bullet:
 
                 self.To.Hp = self.To.Hp - 1
                 if self.type is Fire:
-                    Firing(self)
+                   pass
                 elif self.type is Ice:
-                    Icing(self)
+                    pass
                 elif self.type is Light:
-                    Lightning(self)
+                    pass
                 elif self.type is DownGrade:
-                    DownGrading(self)
+                    pass
                 self.__init__(self.From)
                 self.Comeback()
 
