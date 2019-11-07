@@ -31,7 +31,7 @@ def resume():
     pass
 
 def handle_events():
-    global button_sound , events
+    global button_sound ,events
     events = get_events()
     for event in events:
         if event.type == SDL_MOUSEBUTTONDOWN:

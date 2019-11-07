@@ -91,7 +91,7 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
             map.tower[map.towerCnt].type = 2
         elif (event.type, event.key) == (SDL_KEYDOWN , SDLK_r):
-            map.tower[map.towerCnt].type  = 3
+            map.tower[map.towerCnt].type = 3
 
 
 def update():
@@ -113,7 +113,6 @@ def update():
                                                     (map.tower[i].Rectangle.bot + map.tower[i].Rectangle.top) / 2, tmpR):
                 if map.tower[i].bullet.To is None and boat[z].Hp > 0:
                         map.tower[i].bullet.To = boat[z]
-
 
     for i in range(map.stage):
         HpSum += boat[i].Hp
