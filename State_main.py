@@ -1,7 +1,8 @@
 
 from Class_Boat import *
 from map import *
-
+from Class_Bullet import *
+from Class_Bullet import *
 BackGround = None
 running = True
 speedy = 0.02
@@ -135,7 +136,14 @@ def update():
         volume += 1
 
     for i in range(map.towerCnt): #포탄과 배 충돌쳌흐
-            map.tower[i].bullet.crashCheck()
+        map.tower[i].bullet.crashCheck()
+        if map.tower[i].bullet.To is not None:
+            if ( map.tower[i].bullet.crashCheck() and map.tower[i].bullet.type is Light):
+                if random.randint(0, 100) <= Light_Level:
+                    for i in range(map.stage):
+                        boat[i].Hp -= 1
+                        print(i , " - 연쇄피해")
+
 
     map.update()
     delay(speedy)

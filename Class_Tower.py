@@ -1,12 +1,13 @@
 from pico2d import *
+from Class_Bullet import*
 from setting import *
 import Class_Boat
-from Class_Bullet import*
 
 
 class Tower:
     HP_font = None
     Img = None
+    bullet = None
     def __init__(self):
         self.speed = 15.0
         self.Rectangle = RECT()

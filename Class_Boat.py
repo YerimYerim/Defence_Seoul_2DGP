@@ -6,7 +6,7 @@ from pico2d import *
 import gameover_stage
 import State_NextStage
 from framework import *
-
+from Class_Bullet import *
 class Boat:
     Img = None
     HP_font = None
