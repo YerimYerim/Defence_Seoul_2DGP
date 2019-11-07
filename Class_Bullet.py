@@ -5,6 +5,8 @@ import State_start
 import gameover_stage
 from Class_Tower import *
 from Class_Boat import *
+from Tower_Type_Passive import *
+import random
 import math
 
 class Bullet :
@@ -40,6 +42,20 @@ class Bullet :
                     return
 
                 self.To.Hp = self.To.Hp - 1
+                if self.type is Fire:
+                   pass
+                elif self.type is Ice:
+                    pass
+                elif self.type is Light:
+                    pass
+                elif self.type is DownGrade:
+                    pass
+
+
+
+
+
+
                 self.__init__(self.From)
                 self.Comeback()
 
