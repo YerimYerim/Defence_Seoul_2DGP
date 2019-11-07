@@ -42,7 +42,7 @@ def resume():
 
 
 def handle_events():
-    global running,speedy , gold , volume
+    global running,speedy , volume , Fire_Level , DownGrade_Level , Ice_Level , Light_Level
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -73,7 +73,24 @@ def handle_events():
             else:
                 for i in range(4):
                     if InterSectRECT(event.x, event.y, Select_Tower_Rect[i]):
-                        map.tower[map.towerCnt].type = i
+                        if i is Fire:
+                            if map.gold - Fire_Level >= 0:
+                                Fire_Level += 1
+                                map.gold -= Fire_Level
+                        if i is Ice:
+                            if map.gold - Ice_Level >= 0:
+                                Ice_Level += 1
+                                map.gold -= Ice_Level
+                        if i is Light:
+                            if map.gold - Light_Level >= 0:
+                                Light_Level += 1
+                                map.gold -= Light_Level
+                        if i is DownGrade:
+                            if map.gold - DownGrade_Level >= 0:
+                                DownGrade_Level += 1
+                                map.gold -= DownGrade_Level
+
+
         #     print (event.x , event.y)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
             boat_move_bgm.set_volume(volume)
@@ -138,7 +155,7 @@ def update():
     for i in range(map.towerCnt): #포탄과 배 충돌쳌흐
         if map.tower[i].bullet.To is not None:
             if ( map.tower[i].bullet.crashCheck() and map.tower[i].bullet.type is Light):
-                if random.randint(0, 100) <= Light_Level:
+                if random.randint(0, 100) <= Light_Level * 10:
                     for i in range(map.stage):
                         boat[i].Hp -= 1
                         print(i , " - 연쇄피해")
