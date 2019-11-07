@@ -24,7 +24,7 @@ def Firing(bullet):
 
 def Icing(bullet):
     if random.randint(0,100) <= Ice_Level * 10:
-        bullet.To.Speed = bullet.To.Speed * 0.95
+        bullet.To.Speed = bullet.To.Speed * 0.9
 
 
 def Lightning(bullet):
@@ -40,7 +40,6 @@ def draw_Level(Fire_Level , Ice_Level , Light_Level, DownGrade_Level):
     if font_level is None:
         font_level = load_font('font\\PressStart2P.ttf', 12)
     s = "Lv." + str(Fire_Level)
-    print (Fire_Level)
     font_level.draw(Tile_SIZE * 0.5, Tile_SIZE * 0.3, s, (0, 0, 0))
     s = "Lv." + str(Ice_Level)
     font_level.draw(Tile_SIZE * 2.5, Tile_SIZE * 0.3, s, (0, 0, 0))
