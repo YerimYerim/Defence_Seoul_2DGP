@@ -1,8 +1,11 @@
-
+from Tower_Type_Passive import *
 from Class_Tower import *
+from setting import *
+
 
 class Map:
     font = None
+
     def __init__(self):
         self.Tiles = [[0] * 17 for i in range(10)]
         self.type = 0
@@ -39,6 +42,7 @@ class Map:
 
 
     def draw(self):
+        global Light_Level , Fire_Level, Ice_Level, DownGrade_Level
         if BackHIEGHT-self.TileRect.bot >= Tile_SIZE:
             draw_rectangle(self.TileRect.left,  BackHIEGHT- self.TileRect.bot + 2 , self.TileRect.right, BackHIEGHT - self.TileRect.top)
         for i in range(self.towerCnt):
@@ -46,11 +50,22 @@ class Map:
                 self.tower[i].draw()
         s = str (self.gold)
         self.font.draw(Tile_SIZE * 10,Tile_SIZE * 1, s, ( 0,0,0))
-        s =  "stage"
+        s = "stage"
         self.font.draw(Tile_SIZE * 13.3,Tile_SIZE * 1.5, s, ( 0,0,0))
         s = str(self.stage)
         self.font.draw(Tile_SIZE * 14,Tile_SIZE * 0.7, s, ( 0,0,0))
 
+        s = "Lv." + str(Fire_Level)
+        self.font.draw(Tile_SIZE * 0.3, Tile_SIZE * 0.3, s, (0, 0, 0))
+
+        s = "Lv." + str(Ice_Level)
+        self.font.draw(Tile_SIZE * 2.3, Tile_SIZE * 0.3, s, (0, 0, 0))
+
+        s = "Lv." + str(Light_Level)
+        self.font.draw(Tile_SIZE * 4.3, Tile_SIZE * 0.3, s, (0, 0, 0))
+
+        s = "Lv." + str(DownGrade_Level)
+        self.font.draw(Tile_SIZE * 6.3, Tile_SIZE * 0.3, s, (0, 0, 0))
 
     def update(self):
         for i in range(self.towerCnt):
