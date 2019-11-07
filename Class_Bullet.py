@@ -12,7 +12,7 @@ import random
 import math
 
 
-class Bullet :
+class Bullet:
     From = None
     To = None
 

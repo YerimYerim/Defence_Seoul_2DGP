@@ -1,13 +1,14 @@
 from pico2d import *
-from Class_Bullet import*
+
 from setting import *
+from Class_Bullet import *
 import Class_Boat
 
 
 class Tower:
     HP_font = None
     Img = None
-    bullet = None
+    bullet = Bullet()
     def __init__(self):
         self.speed = 15.0
         self.Rectangle = RECT()
@@ -16,7 +17,7 @@ class Tower:
         self.Boat_frame = 0
         self.range = Tile_SIZE * 3
         self.type = -1       # 0- 불 1 - 냉기  2 - 전기 3 - 강등
-        self.bullet = Bullet(self)
+        self.bullet = Bullet().__init__(self)
 #        self.bullet = Bullet()
         if Tower.Img is None:
             Tower.Img = load_image('Spritesheet\\resource.png')
