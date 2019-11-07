@@ -81,20 +81,22 @@ def handle_events():
                     if InterSectRECT(event.x, event.y, Select_Tower_Rect[i]):
                         if i is Fire:
                             if map.gold - Fire_Level >= 0:
-                                Fire_Level += 1
                                 map.gold -= Fire_Level
+                                Fire_Level += 1
+
                         if i is Ice:
                             if map.gold - Ice_Level >= 0:
-                                Ice_Level += 1
                                 map.gold -= Ice_Level
+                                Ice_Level += 1
+
                         if i is Light:
                             if map.gold - Light_Level >= 0:
-                                Light_Level += 1
                                 map.gold -= Light_Level
+                                Light_Level += 1
                         if i is DownGrade:
                             if map.gold - DownGrade_Level >= 0:
-                                DownGrade_Level += 1
                                 map.gold -= DownGrade_Level
+                                DownGrade_Level += 1
 
 
         #     print (event.x , event.y)
