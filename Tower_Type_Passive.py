@@ -25,8 +25,9 @@ def Icing(bullet):
 
 
 def Lightning(bullet):
-      pass
 
+    if random.randint(0,100) <= Light_Level:
+        pass
 
 def DownGrading(bullet):
 

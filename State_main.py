@@ -91,7 +91,7 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
             map.tower[map.towerCnt].type = 2
         elif (event.type, event.key) == (SDL_KEYDOWN , SDLK_r):
-            map.tower[map.towerCnt].type  = 3
+            map.tower[map.towerCnt].type = 3
 
 
 def update():
@@ -114,7 +114,6 @@ def update():
                 if map.tower[i].bullet.To is None and boat[z].Hp > 0:
                         map.tower[i].bullet.To = boat[z]
 
-
     for i in range(map.stage):
         HpSum += boat[i].Hp
 
@@ -136,13 +135,7 @@ def update():
         volume += 1
 
     for i in range(map.towerCnt): #포탄과 배 충돌쳌흐
-        if map.tower[i].bullet.To is not None:
-            if ( map.tower[i].bullet.crashCheck() and map.tower[i].bullet.type is Light):
-                if random.randint(0, 100) <= Light_Level:
-                    for i in range(map.stage):
-                        boat[i].Hp -= 1
-                        print(i , " - 연쇄피해")
-
+            map.tower[i].bullet.crashCheck()
 
     map.update()
     delay(speedy)
