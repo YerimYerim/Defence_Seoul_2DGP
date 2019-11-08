@@ -17,14 +17,14 @@ font_level = None
 
 
 def Firing(bullet):
-    if random.randint(0, 100) <= Fire_Level:
-        bullet.To.Hp -= random.randint(5, 10)
+#    if random.randint(0, 100) <= Fire_Level:
+        bullet.To.Hp -= random.randint(1, Fire_Level * 2)
         print ("passive fire")
 
 
 def Icing(bullet):
-    if random.randint(0,100) <= Ice_Level * 10:
-        bullet.To.Speed = bullet.To.Speed * 0.9
+#    if random.randint(0,100) <= Ice_Level * 10:
+        bullet.To.Speed = bullet.To.Speed * (0.99 **Ice_Level)
 
 
 def Lightning(bullet):
