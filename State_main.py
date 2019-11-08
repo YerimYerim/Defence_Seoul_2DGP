@@ -56,6 +56,7 @@ def handle_events():
         if event.type == SDL_MOUSEMOTION:
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
+            map.tower[map.towerCnt].type = random.randint(0,3)
             if map.tower[map.towerCnt].type >= 0 and map.gold > 0 and \
                     map.select(event.x , event.y) is not False and Tile_SIZE * 8 > event.y:
                 for i in range(map.towerCnt):
