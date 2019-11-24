@@ -24,8 +24,9 @@ def enter():
         boat[i].Speed += map.stage / 5
     BackGround = load_image('Spritesheet\\resource.png')
     HpSum = 0
+
     main_bgm = load_music('sound\\테란브금.mp3')
-    main_bgm.set_volume(64)
+    main_bgm.set_volume(0)
     main_bgm.repeat_play()
     boat_move_bgm = load_music('sound\\낙찰.mp3')
     Fire_Level = 1
@@ -158,7 +159,7 @@ def update():
         framework.push_state(State_NextStage)
 
     boat_move_bgm.set_volume(volume)
-    if volume < 100:
+    if volume < 10:
         volume += 1
 
     for i in range(map.towerCnt): #포탄과 배 충돌쳌흐

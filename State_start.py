@@ -11,7 +11,7 @@ def enter():
     global start_Img , start_Sound , button_sound
     start_Img = load_image('Map\\start.png')
     start_Sound = load_music('sound\\대기.mp3')
-    start_Sound.set_volume(128)
+    start_Sound.set_volume(10)
 #    button_sound = load_wav('sound\\button.wav')
 #    button_sound.set_volume(50)
     print("재생")
