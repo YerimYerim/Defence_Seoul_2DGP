@@ -13,7 +13,7 @@ map = None
 HpSum = None
 main_bgm = None
 boat_move_bgm = None
-volume = 0
+volume = 10
 
 def enter():
     global boat, BackGround, map, tower , HpSum , main_bgm , boat_move_bgm , Fire_Level, Ice_Level , Light_Level, DownGrade_Level
@@ -26,7 +26,7 @@ def enter():
     HpSum = 0
 
     main_bgm = load_music('sound\\테란브금.mp3')
-    main_bgm.set_volume(0)
+    main_bgm.set_volume(volume)
     main_bgm.repeat_play()
     boat_move_bgm = load_music('sound\\낙찰.mp3')
     Fire_Level = 1
@@ -119,6 +119,10 @@ def handle_events():
             map.tower[map.towerCnt].type = 2
         elif (event.type, event.key) == (SDL_KEYDOWN , SDLK_r):
             map.tower[map.towerCnt].type  = 3
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
+            volume  = volume + 10
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
+            volume = volume - 10
 
 
 def update():
@@ -159,8 +163,7 @@ def update():
         framework.push_state(State_NextStage)
 
     boat_move_bgm.set_volume(volume)
-    if volume < 10:
-        volume += 1
+
 
     for i in range(map.towerCnt): #포탄과 배 충돌쳌흐
         if map.tower[i].bullet.To is not None:
