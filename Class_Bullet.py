@@ -19,8 +19,9 @@ class Bullet :
         self.To = None
         self.type = FROM.type
         self.Image = load_image('Spritesheet\\bullet.png')
-        self.crash_sound = load_wav('sound\\crash.ogg')
-        self.crash_sound.set_volume(50)
+        if self.crash_sound is None:
+            self.crash_sound = load_wav('sound\\crash.ogg')
+            self.crash_sound.set_volume(5)
 
     def draw(self):
         if self.type >= 0:
