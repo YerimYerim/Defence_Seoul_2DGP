@@ -12,18 +12,21 @@ import math
 class Bullet :
     From = None
     To = None
+    crash_sound  = None
     def __init__(self , FROM):
         self.From = FROM
         self.x, self.y = (self.From.Rectangle.left + self.From.Rectangle.right) / 2, (self.From.Rectangle.top + self.From.Rectangle.bot) / 2
         self.To = None
         self.type = FROM.type
         self.Image = load_image('Spritesheet\\bullet.png')
-        self.crash_sound = load_wav('sound\\button.wav')
-        self.crash_sound.set_volume(10)
+        self.crash_sound = load_wav('sound\\crash.ogg')
+        self.crash_sound.set_volume(1000)
 
     def draw(self):
         if self.type >= 0:
             self.Image.clip_draw(65 * self.type, 0, 44, 44, self.x, self.y, 20, 20 )
+
+
         pass
 
     def Comeback(self):
@@ -40,7 +43,7 @@ class Bullet :
                     self.__init__(self.From)
                     self.Comeback()
                     return False
-
+                self.crash_sound.play()
                 self.To.Hp = self.To.Hp - 1
                 if self.type is Fire:
                     Firing(self)
