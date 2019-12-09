@@ -15,9 +15,11 @@ main_bgm = None
 boat_move_bgm = None
 volume = 10
 
+crash_font = None
 
 def enter():
     global boat, BackGround, map, tower , HpSum , main_bgm , boat_move_bgm , Fire_Level, Ice_Level , Light_Level, DownGrade_Level
+    global crash_font
     map = Map()
     boat = [ Boat() for i in range(map.stage)]
     for i in range(map.stage):
@@ -34,10 +36,8 @@ def enter():
     Ice_Level = 1
     Light_Level = 1
     DownGrade_Level = 1
-    fire_font = None
-    ice_font = None
-    light_font = None
-    down_font = None
+    crash_font = load_font('font\\SeoulNamsanB.ttf', 13)
+
 
 def exit():
     global boat , map , main_bgm , boat_move_bgm
@@ -170,13 +170,13 @@ def update():
     boat_move_bgm.set_volume(volume)
 
 
-    for i in range(map.towerCnt): #포탄과 배 충돌쳌흐
+    for i in range(map.towerCnt): #포탄과 배 충돌
         if map.tower[i].bullet.To is not None:
             if ( map.tower[i].bullet.crashCheck() and map.tower[i].bullet.type is Light):
                 if random.randint(0, 100) <= Light_Level * 10:
                     for i in range(map.stage):
                         boat[i].Hp -= 1
-                        print(i , " - 연쇄피해")
+                        print("LIGHT")
 
 
     map.update()
@@ -191,6 +191,10 @@ def draw():
         if boat[i].state is not 2:
             boat[i].draw()
     map.draw()
+    crash_font.draw(boat[i].Rectangle.left, boat[i].Rectangle.top, "LIGHT", (255, 255, 0))
+    crash_font.draw(boat[i].Rectangle.left, boat[i].Rectangle.bot, "FIRE", (255, 0, 0))
+    crash_font.draw(boat[i].Rectangle.right, boat[i].Rectangle.top, "ICE", (0, 0, 255))
+    crash_font.draw(boat[i].Rectangle.right, boat[i].Rectangle.bot, "Down", (0, 255, 0))
     draw_Level(Fire_Level, Ice_Level, Light_Level, DownGrade_Level)
     update_canvas()
 
