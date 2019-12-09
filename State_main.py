@@ -15,6 +15,7 @@ main_bgm = None
 boat_move_bgm = None
 volume = 10
 
+
 def enter():
     global boat, BackGround, map, tower , HpSum , main_bgm , boat_move_bgm , Fire_Level, Ice_Level , Light_Level, DownGrade_Level
     map = Map()
@@ -33,6 +34,10 @@ def enter():
     Ice_Level = 1
     Light_Level = 1
     DownGrade_Level = 1
+    fire_font = None
+    ice_font = None
+    light_font = None
+    down_font = None
 
 def exit():
     global boat , map , main_bgm , boat_move_bgm

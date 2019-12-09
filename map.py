@@ -4,6 +4,7 @@ from Tower_Type_Passive import *
 
 class Map:
     font = None
+
     def __init__(self):
         self.Tiles = [[0] * 17 for i in range(10)]
         self.type = 0
