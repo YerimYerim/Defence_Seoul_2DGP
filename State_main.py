@@ -176,6 +176,9 @@ def update():
                 if random.randint(0, 100) <= Light_Level * 10:
                     for i in range(map.stage):
                         boat[i].Hp -= 1
+                        boat[i].state_down = False
+                        boat[i].state_fire = False
+                        boat[i].state_Light = True
                         print("LIGHT")
 
 
