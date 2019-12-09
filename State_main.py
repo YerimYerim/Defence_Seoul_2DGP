@@ -191,10 +191,7 @@ def draw():
         if boat[i].state is not 2:
             boat[i].draw()
     map.draw()
-    crash_font.draw(boat[i].Rectangle.left, boat[i].Rectangle.top, "LIGHT", (255, 255, 0))
-    crash_font.draw(boat[i].Rectangle.left, boat[i].Rectangle.bot, "FIRE", (255, 0, 0))
-    crash_font.draw(boat[i].Rectangle.right, boat[i].Rectangle.top, "ICE", (0, 0, 255))
-    crash_font.draw(boat[i].Rectangle.right, boat[i].Rectangle.bot, "Down", (0, 255, 0))
+
     draw_Level(Fire_Level, Ice_Level, Light_Level, DownGrade_Level)
     update_canvas()
 

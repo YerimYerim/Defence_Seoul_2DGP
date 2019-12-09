@@ -21,6 +21,7 @@ class Boat:
         self.White_color = [0, 0, 0]
         self.Boat_frame = 0
         self.Frame_Dir = 'R'
+        self.state = None
         if self.Img is None:
             self.Img = load_image('Spritesheet\\boat.png')
         if self.HP_font is None :
@@ -36,6 +37,8 @@ class Boat:
             pass
 
     def draw(self):
+        if self.state is not None:
+            pass
         if self.Hp >= 0:
             s = str(int (self.Hp))
             self.Img.clip_draw(3 + 61 * self.Boat_frame, 400 - 116 - Boat_IMG_SIZE, Boat_IMG_SIZE + 5, Boat_IMG_SIZE,
