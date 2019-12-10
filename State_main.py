@@ -64,11 +64,9 @@ def handle_events():
         if event.type == SDL_MOUSEMOTION:
             map.select(event.x, event.y)
         if event.type == SDL_MOUSEBUTTONDOWN:
-            if map.tower[map.towerCnt].type >= 0 and map.gold > 0 and \
-                    map.select(event.x , event.y) is not False and Tile_SIZE * 8 > event.y:
+            if map.tower[map.towerCnt].type >= 0 and map.gold > 0 and map.select(event.x , event.y) is not False and Tile_SIZE * 8 > event.y:
                 for i in range(map.towerCnt):
-                    if map.select(event.x , event.y).left is map.tower[i].Rectangle.left and \
-                            map.select(event.x, event.y).bot is map.tower[i].Rectangle.bot:
+                    if map.select(event.x , event.y).left is map.tower[i].Rectangle.left and map.select(event.x, event.y).bot is map.tower[i].Rectangle.bot:
                         return
                 map.tower[map.towerCnt].Rectangle.set(map.select(event.x, event.y).left,
                                                       map.select(event.x, event.y).bot,
@@ -79,7 +77,6 @@ def handle_events():
                 map.tower[map.towerCnt].bullet.From = map.tower[map.towerCnt]
                 map.tower[map.towerCnt].bullet.x = (map.tower[map.towerCnt].Rectangle.right + map.tower[map.towerCnt].Rectangle.left)/2
                 map.tower[map.towerCnt].bullet.y = BackHIEGHT - (map.tower[map.towerCnt].Rectangle.bot + map.tower[map.towerCnt].Rectangle.top)/2
-
                 map.towerCnt += 1
                 map.gold -= 1
             elif map.select(event.x, event.y) is False:
