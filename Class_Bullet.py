@@ -6,7 +6,6 @@ import State_start
 import gameover_stage
 
 from Class_Boat import *
-from Tower_Type_Passive import *
 import random
 import math
 from Class_Tower import *

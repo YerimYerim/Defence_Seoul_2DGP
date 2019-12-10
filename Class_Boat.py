@@ -27,7 +27,6 @@ def Firing(bullet):
         global fire_damage
         fire_damage = random.randint(1 + Fire_Level, ( 1 + Fire_Level) * 2)
         bullet.To.Hp -= fire_damage
-        print ("passive fire")
 
 
 def Icing(bullet):
@@ -55,6 +54,7 @@ def draw_Level(Fire_Level , Ice_Level , Light_Level, DownGrade_Level):
     font_level.draw(Tile_SIZE * 4.5, Tile_SIZE * 0.3, s, (0, 0, 0))
     s = "Lv." + str(DownGrade_Level)
     font_level.draw(Tile_SIZE * 6.5, Tile_SIZE * 0.3, s, (0, 0, 0))
+
 class Boat:
     Img = None
     HP_font = None
@@ -187,7 +187,6 @@ class Boat:
             self.go_right()
         else:
             self.Is_dead()
-            print("hi im dead")
 
         self.Move_Times += self.Speed
 
@@ -216,6 +215,5 @@ class Boat:
         if self.state is 3:
             self.state = 1
             framework.push_state(gameover_stage)
-            print("push")
 
         pass
