@@ -20,7 +20,6 @@ class Tower:
         if Tower.Img is None:
             Tower.Img = load_image('Spritesheet\\resource.png')
             Tower.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
-            print(" 그림 업로드")
 
     def draw(self):
         self.bullet.draw()

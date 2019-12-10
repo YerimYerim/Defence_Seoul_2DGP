@@ -10,12 +10,12 @@ Img = None
 
 def enter():
     global Img
-    Img = load_image('Spritesheet\\GameOver.png')
+    if Img is None:
+        Img = load_image('Spritesheet\\GameOver.png')
 
 
 def exit():
-    global Img
-    del Img
+    pass
 
 
 def pause():
@@ -35,13 +35,21 @@ def handle_events():
 
 
 def update():
-    delay(0.03)
+
     pass
 
 
 def draw():
     clear_canvas()
-#   self, left, bottom, width, height, x, y, w = None, h = None)
-    State_main.draw()
+    State_main.BackGround.clip_draw(666, 708-583, BackWIDTH, BackHIEGHT, BackWIDTH/2, BackHIEGHT/2)
+    for i in range(State_main.map.stage):
+        if State_main.boat[i].state is not 2:
+            State_main.boat[i].draw()
+    State_main.map.draw()
+    State_main.draw_Level(State_main.Fire_Level, State_main.Ice_Level, State_main.Light_Level,State_main.State_main.DownGrade_Level)
+    State_main.map.draw()
     Img.clip_draw(0, 0, 1362, 345, BackWIDTH / 2, BackHIEGHT / 2, BackWIDTH, BackHIEGHT / 2)
     update_canvas()
+
+
+

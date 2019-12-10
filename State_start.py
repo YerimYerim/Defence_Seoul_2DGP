@@ -8,7 +8,7 @@ start_Sound = None
 button_sound = None
 name = "Start_state"
 def enter():
-    global start_Img , start_Sound , button_sound
+    global start_Img , start_Sound
     start_Img = load_image('Map\\start.png')
     start_Sound = load_music('sound\\대기.mp3')
     start_Sound.set_volume(10)
@@ -38,7 +38,6 @@ def handle_events():
             close_canvas()
         if event.type == SDL_MOUSEBUTTONDOWN:
             framework.change_state(State_main)
-            print("메ㄴ인으로넘어감")
 
 
 def update():

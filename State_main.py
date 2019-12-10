@@ -25,10 +25,11 @@ def enter():
     for i in range(map.stage):
         boat[i].Hp = map.stage * 10
         boat[i].Speed += map.stage / 5
-    BackGround = load_image('Spritesheet\\resource.png')
+    if BackGround is None:
+        BackGround = load_image('Spritesheet\\resource.png')
     HpSum = 0
-
-    main_bgm = load_music('sound\\테란브금.mp3')
+    if main_bgm is None:
+        main_bgm = load_music('sound\\테란브금.mp3')
     main_bgm.set_volume(volume)
     main_bgm.repeat_play()
     boat_move_bgm = load_music('sound\\낙찰.mp3')
@@ -36,7 +37,8 @@ def enter():
     Ice_Level = 1
     Light_Level = 1
     DownGrade_Level = 1
-    crash_font = load_font('font\\SeoulNamsanB.ttf', 13)
+    if crash_font is None:
+        crash_font = load_font('font\\SeoulNamsanB.ttf', 13)
 
 
 def exit():
@@ -183,7 +185,7 @@ def update():
 
 
     map.update()
-    delay(speedy)
+
 
 
 def draw():
@@ -194,7 +196,6 @@ def draw():
         if boat[i].state is not 2:
             boat[i].draw()
     map.draw()
-
     draw_Level(Fire_Level, Ice_Level, Light_Level, DownGrade_Level)
     update_canvas()
 

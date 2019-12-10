@@ -12,10 +12,7 @@ Fire = 0
 Ice = 1
 Light = 2
 DownGrade = 3
-Fire = 0
-Ice = 1
-Light = 2
-DownGrade = 3
+
 
 Fire_Level = 1
 Ice_Level = 1
@@ -28,7 +25,7 @@ font_level = None
 def Firing(bullet):
 #    if random.randint(0, 100) <= Fire_Level:
         global fire_damage
-        fire_damage = random.randint(1, Fire_Level * 2)
+        fire_damage = random.randint(1 + Fire_Level, ( 1 + Fire_Level) * 2)
         bullet.To.Hp -= fire_damage
         print ("passive fire")
 
@@ -78,7 +75,8 @@ class Boat:
         self.state_Light = False
         self.state_Ice  = False
         self.state_down = False
-        self.Img = load_image('Spritesheet\\boat.png')
+        if self.Img is None:
+            self.Img = load_image('Spritesheet\\boat.png')
         if self.HP_font is None :
             self.HP_font = load_font('font\\SeoulNamsanB.ttf', 13)
         self.state = 0  # 0 - 대기 1 - 시작 2 - dead
@@ -96,7 +94,7 @@ class Boat:
     def draw(self):
         global fire_damage
         if self.state_fire is True and self.state_down is False and self.state_Light is False:
-            self.crash_font.draw(self.Rectangle.left, self.Rectangle.bot, str(fire_damage), (255, 0, 0))
+            self.crash_font.draw(self.Rectangle.left, self.Rectangle.bot, "-" + str(fire_damage+1), (255, 0, 0))
         if self.state_Light is True and self.state_down is False and self.state_fire is False:
             self.crash_font.draw(self.Rectangle.left, self.Rectangle.top, "LIGHT", (255, 255, 0))
         if self.state_Ice is True :
